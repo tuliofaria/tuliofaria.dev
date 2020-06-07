@@ -1,5 +1,7 @@
 # TulioFaria.dev (resume)
 
+[![HitCount](https://hits.dwyl.com/tuliofaria/tuliofaria/tuliofariadev.svg)](https://hits.dwyl.com/tuliofaria/tuliofaria/tuliofariadev)
+
 Este projeto é o código-fonte do curriculo online de Tulio Faria, disponível em: https://tuliofaria.dev
 
 ![Preview](https://github.com/tuliofaria/tuliofaria.dev/blob/master/print.png?raw=true)
