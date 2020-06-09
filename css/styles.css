@@ -5,6 +5,12 @@
 .bg-body{
   background: #F3F4FB;
 }
-.bg-network{
-  background: url(/images/back-network.png) top right no-repeat;
+
+@responsive {
+  .bg-network-left{
+    background: url(/images/back-network.png) top left no-repeat;
+  }
+  .bg-network-right{
+    background: url(/images/back-network.png) top right no-repeat;
+  }
 }
