@@ -5,12 +5,14 @@ import useSWR from 'swr'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-const Repos = () => {
+const Repos = ({ user, repos }) => {
+  /*
   const { data } = useSWR(process.env.NEXT_PUBLIC_API_URL + '/api/getUser', fetcher)
   if (!data) {
     return <p>Loading...</p>
   }
   const { user, repos } = data
+  */
   return (
     <div>
       <h3 className='mx-6 md:mx-0 text-4xl font-bold text-center uppercase mt-10 text-orange'>Tech contributions</h3>
