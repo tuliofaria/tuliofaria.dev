@@ -1,6 +1,7 @@
 import React from 'react'
 import App from 'next/app'
 import '../css/styles.css'
+import 'photo-sphere-viewer/dist/photo-sphere-viewer.css'
 
 class MyApp extends App {
   render() {
@@ -8,9 +9,9 @@ class MyApp extends App {
     return (
       <React.Fragment>
         <style jsx global>
-        {`
+          {`
             @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap');
-        `}
+          `}
         </style>
         <Component {...pageProps} />
       </React.Fragment>
