@@ -1,0 +1,55 @@
+/* ==========================================================================
+   [BTS] tulio — Color tokens
+   --------------------------------------------------------------------------
+   "Duas cores principais. Sem cores de acento. Sempre."
+   Charcoal over cream (light) or cream over charcoal (dark). Nothing else.
+   ========================================================================== */
+
+:root {
+  /* — Base palette ------------------------------------------------------- */
+  --charcoal-ink: #212121;   /* Carvão  — primary ink            */
+  --cream-paper:  #F5F0E6;   /* Papel quente — primary surface   */
+
+  /* — Supporting tones (use sparingly) ----------------------------------- */
+  --tone-secondary: #736E66; /* Texto secundário                 */
+  --tone-line:      #C7BDB0; /* Linhas / divisores (hairline)    */
+
+  /* Derived, on-cream tints for hover/press washes */
+  --ink-08: rgba(33, 33, 33, 0.08);
+  --ink-12: rgba(33, 33, 33, 0.12);
+  --ink-64: rgba(33, 33, 33, 0.64);
+  --cream-12: rgba(245, 240, 230, 0.12);
+  --cream-64: rgba(245, 240, 230, 0.64);
+
+  /* — Semantic aliases (LIGHT mode is the default) ----------------------- */
+  --surface-page:    var(--cream-paper);
+  --surface-card:    var(--cream-paper);
+  --surface-inverse: var(--charcoal-ink);
+
+  --text-primary:    var(--charcoal-ink);
+  --text-secondary:  var(--tone-secondary);
+  --text-on-inverse: var(--cream-paper);
+
+  --border-hairline: var(--tone-line);
+  --border-strong:   var(--charcoal-ink);
+
+  --field-hover:     var(--ink-08);
+  --field-press:     var(--ink-12);
+}
+
+/* — Dark mode: cream over charcoal -------------------------------------- */
+[data-theme="dark"] {
+  --surface-page:    var(--charcoal-ink);
+  --surface-card:    var(--charcoal-ink);
+  --surface-inverse: var(--cream-paper);
+
+  --text-primary:    var(--cream-paper);
+  --text-secondary:  #A8A199;
+  --text-on-inverse: var(--charcoal-ink);
+
+  --border-hairline: #3A3A38;
+  --border-strong:   var(--cream-paper);
+
+  --field-hover:     var(--cream-12);
+  --field-press:     rgba(245, 240, 230, 0.18);
+}

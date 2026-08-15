@@ -3,8 +3,9 @@ import { Viewer } from '@photo-sphere-viewer/core'
 import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin'
 
 const PanoViewer = () => {
-  const viewerRef = useRef()
+  const viewerRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
+    if (!viewerRef.current) return
     const viewer = new Viewer({
       navbar: ['autorotate', 'zoom', 'caption', 'fullscreen'],
       container: viewerRef.current,
@@ -16,13 +17,15 @@ const PanoViewer = () => {
     }
   }, [])
   return (
-    <div className='shadow-xl'>
-      <div
-        ref={viewerRef}
-        className='rounded-lg'
-        style={{ height: 480, overflow: 'hidden' }}
-      ></div>
-    </div>
+    <div
+      ref={viewerRef}
+      style={{
+        height: 480,
+        overflow: 'hidden',
+        borderRadius: 'var(--radius-md)',
+        border: 'var(--hairline)',
+      }}
+    ></div>
   )
 }
 export default PanoViewer

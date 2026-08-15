@@ -1,0 +1,49 @@
+/* ==========================================================================
+   [BTS] tulio — Spacing, grid, radii, borders
+   --------------------------------------------------------------------------
+   Base-8 scale. "Respiro é parte da marca" — whitespace is intentional.
+   Hairline rules (0.4pt) replace heavy boxes. Minimal radii.
+   ========================================================================== */
+
+:root {
+  /* — Spacing scale (base 8px) ------------------------------------------- */
+  --space-xs:  4px;
+  --space-s:   8px;
+  --space-m:   16px;
+  --space-l:   24px;
+  --space-xl:  40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;   /* section rhythm on large layouts                 */
+  --space-4xl: 144px;
+
+  /* — Layout ------------------------------------------------------------- */
+  --measure:        68ch;     /* ideal reading width for an essay         */
+  --container-max:  1180px;   /* content max-width                        */
+  --container-wide: 1360px;
+  --gutter:         clamp(20px, 5vw, 64px);
+
+  /* — Borders ------------------------------------------------------------ */
+  --hairline:      0.5px solid var(--border-hairline);
+  --rule-strong:   1px solid var(--border-strong);
+  --border-width:  1px;
+
+  /* — Radii (kept minimal — editorial, not rounded UI) ------------------- */
+  --radius-none: 0;
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-pill: 999px;
+
+  /* — Elevation: the brand prefers hairlines over shadow.
+        Reserve these for floating UI only (dialogs, toasts, menus). ------ */
+  --shadow-none:  none;
+  --shadow-pop:   0 1px 2px rgba(33,33,33,0.06), 0 8px 24px rgba(33,33,33,0.10);
+  --shadow-float: 0 12px 40px rgba(33,33,33,0.16);
+
+  /* — Motion ------------------------------------------------------------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:      120ms;
+  --dur-base:      200ms;
+  --dur-slow:      360ms;
+}

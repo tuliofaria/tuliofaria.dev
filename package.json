@@ -14,15 +14,17 @@
   "dependencies": {
     "@photo-sphere-viewer/autorotate-plugin": "^5.13.4",
     "@photo-sphere-viewer/core": "^5.13.4",
+    "gray-matter": "^4.0.3",
     "next": "^16.3.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-icons": "^5.5.0",
-    "swr": "^2.3.4",
+    "react-markdown": "^10.1.0",
     "three": "^0.179.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.11",
-    "tailwindcss": "^4.1.11"
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "typescript": "^7.0.2"
   }
 }
