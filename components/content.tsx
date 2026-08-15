@@ -37,26 +37,48 @@ export function IssueRow({ issue }: { issue: IssueMeta }) {
 
 export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', note = 'Um envio por semana. Sem spam, sem hype.', buttonLabel = 'Assinar' }: { title?: string; note?: string; buttonLabel?: string }) {
   const [email, setEmail] = useState('')
-  const [done, setDone] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email || status === 'sending') return
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      setStatus(res.ok ? 'done' : 'error')
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <div>
       <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(1.5rem, 3vw, 2rem)', letterSpacing: '-0.02em', lineHeight: 1.1, margin: '0 0 18px', maxWidth: '20ch' }}>
         {title}
       </h3>
-      {done ? (
+      {status === 'done' ? (
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--text-secondary)' }}>→ Pronto. Confira sua caixa de entrada.</p>
       ) : (
-        <form onSubmit={(e) => { e.preventDefault(); if (email) setDone(true) }}
+        <form onSubmit={submit}
           style={{ display: 'flex', gap: 'var(--space-m)', alignItems: 'flex-end', maxWidth: 460, flexWrap: 'wrap' }}>
           <div style={{ flex: '1 1 240px' }}>
             <input type='email' required placeholder='seu@email.com' value={email} aria-label='E-mail'
               onChange={(e) => setEmail(e.target.value)}
               style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--text-primary)', background: 'transparent', width: '100%', padding: '10px 2px', border: 'none', borderBottom: '1px solid var(--border-hairline)', outline: 'none' }} />
           </div>
-          <Button type='submit'>{buttonLabel}</Button>
+          <Button type='submit'>{status === 'sending' ? 'Enviando…' : buttonLabel}</Button>
         </form>
       )}
-      {!done && <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.04em', marginTop: 12 }}>{note}</p>}
+      {status === 'error' && (
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.04em', marginTop: 12 }}>
+          Algo deu errado. Tente de novo em instantes.
+        </p>
+      )}
+      {(status === 'idle' || status === 'sending') && <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.04em', marginTop: 12 }}>{note}</p>}
     </div>
   )
 }
