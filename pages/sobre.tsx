@@ -11,6 +11,7 @@ const PanoViewer = dynamic(() => import('../components/PanoViewer'), { ssr: fals
 const LINKS: Array<[string, string, string | null]> = [
   ['ensaios', 'leitura semanal por escrito', '/ensaios'],
   ['vídeos', 'processos gravados em tempo real', null],
+  ['devpleno', 'o canal de programação no YouTube', 'https://www.youtube.com/@devpleno'],
   ['newsletter', 'um envio por semana, no e-mail', '/newsletter'],
 ]
 
@@ -29,7 +30,7 @@ const About = () => {
             style={{ width: 200, height: 260, flex: 'none', objectFit: 'cover', borderRadius: 'var(--radius-md)', border: 'var(--hairline)', filter: 'grayscale(0.18) saturate(0.92)' }} />
           <div style={{ maxWidth: 'var(--measure)', flex: '1 1 360px' }}>
             <p style={{ fontSize: 19, lineHeight: 1.65, margin: '0 0 var(--space-l)' }}>
-              Sou Tulio. Construo produtos digitais há mais de uma década — alguns deram certo, outros viraram ensaio. Aqui eu documento os bastidores: as decisões, os erros e o processo, não só o resultado.
+              Sou Tulio. Construo produtos digitais há mais de uma década — alguns deram certo, outros viraram ensaio. Sou o criador do <a href='https://www.youtube.com/@devpleno' target='_blank' rel='noreferrer' style={{ textDecoration: 'underline' }}>DevPleno</a>, canal no YouTube sobre programação, carreira e construção de produtos. Aqui eu documento os bastidores: as decisões, os erros e o processo, não só o resultado.
             </p>
             <p style={{ fontSize: 19, lineHeight: 1.65, margin: '0 0 var(--space-l)', color: 'var(--text-secondary)' }}>
               Acredito que construir em público é estratégia, não vaidade. E que a clareza — escrever de um jeito que não precise ser explicado duas vezes — é a habilidade mais subestimada de quem cria.
@@ -45,7 +46,10 @@ const About = () => {
           <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-s)' }}>
             {LINKS.map(([label, desc, href]) => (
               <li key={label} style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-m)', borderBottom: 'var(--hairline)', padding: 'var(--space-s) 0' }}>
-                {href ? (
+                {href && href.startsWith('http') ? (
+                  <a href={href} target='_blank' rel='noreferrer' className='kit-navlink'
+                    style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--text-primary)', minWidth: 120, letterSpacing: '0.02em' }}>{label} →</a>
+                ) : href ? (
                   <Link href={href} className='kit-navlink'
                     style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--text-primary)', minWidth: 120, letterSpacing: '0.02em' }}>{label} →</Link>
                 ) : (
