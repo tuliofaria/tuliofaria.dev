@@ -32,10 +32,11 @@ export const ISSUES = [
 ]
 
 export const PROJECTS = [
-  { name: 'Atlas', desc: 'Editor de notas com IA rodando local, sem nuvem.', year: '2026', status: 'em construção' },
-  { name: 'Hangar', desc: 'Infra de deploy de uma linha para side-projects.', year: '2025', status: 'ativo' },
+  { name: 'PipesBot', desc: 'WhatsApp como infraestrutura para qualquer aplicação, com número oficial ou coexistência.', year: '2026', status: 'ativo' },
+  { name: 'Selva CMS', desc: 'CMS open source, multi-tenant e serverless, gerenciável via MCP.', year: '2026', status: 'ativo' },
+  { name: 'Selva Mail', desc: 'E-mail transacional e de marketing rodando na sua própria conta AWS.', year: '2026', status: 'ativo' },
+  { name: 'FullStack Master', desc: 'A formação de programação, repensada para a era da IA.', year: '2026', status: 'em construção' },
   { name: '[BTS] tulio', desc: 'Este site, a newsletter e os vídeos.', year: '2026', status: 'ativo' },
-  { name: 'Cargo', desc: 'CLI para versionar assets de design junto do código.', year: '2024', status: 'arquivado' },
 ]
 
 export const PILLARS = ['Criação', 'Tecnologia', 'Produto', 'Negócios', 'Marca pessoal']
