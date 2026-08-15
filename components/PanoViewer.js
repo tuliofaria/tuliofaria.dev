@@ -16,13 +16,15 @@ const PanoViewer = () => {
     }
   }, [])
   return (
-    <div className='shadow-xl'>
-      <div
-        ref={viewerRef}
-        className='rounded-lg'
-        style={{ height: 480, overflow: 'hidden' }}
-      ></div>
-    </div>
+    <div
+      ref={viewerRef}
+      style={{
+        height: 480,
+        overflow: 'hidden',
+        borderRadius: 'var(--radius-md)',
+        border: 'var(--hairline)',
+      }}
+    ></div>
   )
 }
 export default PanoViewer

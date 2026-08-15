@@ -1,18 +1,26 @@
-@import 'tailwindcss';
+/* ==========================================================================
+   [BTS] tulio — Design System · global entry point
+   --------------------------------------------------------------------------
+   "Bastidores de quem constrói." — Brand Book v1.0 / 2026
+   Fonts (Inter, Inter Tight, JetBrains Mono) are loaded via <link> in
+   pages/_document.js; every other token and base rule comes from below.
+   ========================================================================== */
 
-@theme {
-  --font-sans: 'Titillium Web', ui-sans-serif, system-ui, sans-serif;
-  --color-orange: #f05e7b;
-}
+@import './tokens/colors.css';
+@import './tokens/typography.css';
+@import './tokens/spacing.css';
+@import './tokens/base.css';
 
-.bg-body {
-  background: #f3f4fb;
-}
-
-@utility bg-network-left {
-  background: url(/images/back-network.png) top left no-repeat;
-}
-
-@utility bg-network-right {
-  background: url(/images/back-network.png) top right no-repeat;
+/* — Interaction states for the kit primitives (from the design shell) ---- */
+.kit-issue:hover .kit-issue__title { text-decoration: underline; text-underline-offset: 0.16em; text-decoration-thickness: 2px; }
+.kit-navlink:hover { color: var(--text-primary) !important; }
+.kit-stack:hover div:last-child { text-decoration: underline; text-underline-offset: 0.16em; }
+.kit-btn--primary:hover { background: var(--tone-secondary) !important; border-color: var(--tone-secondary) !important; }
+.kit-btn--secondary:hover { background: var(--field-hover) !important; }
+.kit-btn--ghost:hover { text-decoration: underline; text-underline-offset: 0.22em; }
+.kit-btn:active { transform: translateY(1px); }
+.kit-proj:hover h3 { text-decoration: underline; text-underline-offset: 0.16em; }
+@media (max-width: 720px) {
+  .kit-proj { grid-template-columns: 1fr !important; gap: 8px !important; }
+  .kit-proj > div { justify-self: start !important; }
 }

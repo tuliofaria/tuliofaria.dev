@@ -1,0 +1,50 @@
+/* ==========================================================================
+   [BTS] tulio — Typography tokens
+   --------------------------------------------------------------------------
+   Two-family system. Clear hierarchy, no ornament.
+     Display  → Inter Tight Bold (geometric sans)
+     Body     → Inter Regular / Medium (humanist sans)
+     Accent   → JetBrains Mono (technical monospace)
+   Hierarchy by scale and weight — never by color or ornament.
+   ========================================================================== */
+
+:root {
+  /* — Families ----------------------------------------------------------- */
+  --font-display: "Inter Tight", "Söhne", "Neue Haas Grotesk", system-ui, sans-serif;
+  --font-body:    "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", "Berkeley Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* — Weights ------------------------------------------------------------ */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    800;
+
+  /* — Display / headline scale (web px, scaled up from print pt) ---------- */
+  --text-display:  clamp(3rem, 7vw, 5.5rem);   /* hero — 48→88px         */
+  --text-h1:       clamp(2.25rem, 4vw, 3.25rem);/* 36→52px               */
+  --text-h2:       clamp(1.5rem, 2.4vw, 1.875rem);/* 24→30px             */
+  --text-h3:       1.25rem;                      /* 20px                  */
+
+  /* — Body scale --------------------------------------------------------- */
+  --text-lead:     1.375rem;  /* 22px — standfirst / subtítulo            */
+  --text-body:     1.0625rem; /* 17px — corrido                          */
+  --text-small:    0.9375rem; /* 15px                                     */
+
+  /* — Accent / overline -------------------------------------------------- */
+  --text-overline: 0.75rem;   /* 12px — JetBrains Mono, uppercase         */
+  --text-caption:  0.8125rem; /* 13px — legenda                          */
+
+  /* — Line heights ------------------------------------------------------- */
+  --leading-tight:  1.04;  /* display headlines                          */
+  --leading-snug:   1.18;  /* h2 / h3                                    */
+  --leading-normal: 1.6;   /* body copy                                  */
+  --leading-mono:   1.4;
+
+  /* — Letter spacing ----------------------------------------------------- */
+  --tracking-display: -0.025em; /* tight, confident display              */
+  --tracking-tight:   -0.015em;
+  --tracking-normal:  0;
+  --tracking-over:    0.16em;   /* monospace overlines                   */
+}
