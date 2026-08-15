@@ -1,16 +1,18 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss';
 
-.bg-body{
-  background: #F3F4FB;
+@theme {
+  --font-sans: 'Titillium Web', ui-sans-serif, system-ui, sans-serif;
+  --color-orange: #f05e7b;
 }
 
-@responsive {
-  .bg-network-left{
-    background: url(/images/back-network.png) top left no-repeat;
-  }
-  .bg-network-right{
-    background: url(/images/back-network.png) top right no-repeat;
-  }
+.bg-body {
+  background: #f3f4fb;
+}
+
+@utility bg-network-left {
+  background: url(/images/back-network.png) top left no-repeat;
+}
+
+@utility bg-network-right {
+  background: url(/images/back-network.png) top right no-repeat;
 }

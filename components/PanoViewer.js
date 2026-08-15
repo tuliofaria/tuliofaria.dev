@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { Viewer } from 'photo-sphere-viewer'
+import { Viewer } from '@photo-sphere-viewer/core'
+import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin'
 
 const PanoViewer = () => {
   const viewerRef = useRef()
@@ -8,6 +9,7 @@ const PanoViewer = () => {
       navbar: ['autorotate', 'zoom', 'caption', 'fullscreen'],
       container: viewerRef.current,
       panorama: '/images/pano.jpg',
+      plugins: [AutorotatePlugin],
     })
     return () => {
       viewer.destroy()

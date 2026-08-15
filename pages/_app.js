@@ -1,7 +1,7 @@
 import React from 'react'
 import App from 'next/app'
 import '../css/styles.css'
-import 'photo-sphere-viewer/dist/photo-sphere-viewer.css'
+import '@photo-sphere-viewer/core/index.css'
 
 class MyApp extends App {
   render() {
