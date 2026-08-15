@@ -2,16 +2,46 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { ISSUES } from '../../data/site'
+import type { GetStaticPaths, GetStaticProps } from 'next'
+import ReactMarkdown, { type Components } from 'react-markdown'
+import { getAllIssues, type Issue, type IssueMeta } from '../../lib/ensaios'
 import { Overline, Tag } from '../../components/kit'
 import { NewsletterForm, PullQuote } from '../../components/content'
 
-const ReadIssue = ({ slug }) => {
-  const idx = Math.max(0, ISSUES.findIndex((i) => i.slug === slug))
-  const issue = ISSUES[idx]
-  const prev = ISSUES[idx + 1]
-  const next = ISSUES[idx - 1]
+// Flattens a hast node to its plain text content.
+function hastText(node: any): string {
+  if (!node) return ''
+  if (node.type === 'text') return node.value
+  return (node.children || []).map(hastText).join('')
+}
 
+const markdownComponents: Components = {
+  h2: ({ children }) => (
+    <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(1.375rem,2.6vw,1.75rem)', letterSpacing: '-0.02em', lineHeight: 1.18, margin: 'var(--space-2xl) 0 var(--space-s)' }}>{children}</h2>
+  ),
+  p: ({ children }) => (
+    <p style={{ fontSize: 19, lineHeight: 1.65, margin: '0 0 var(--space-l)', color: 'var(--text-primary)' }}>{children}</p>
+  ),
+  blockquote: ({ node }) => {
+    const paragraphs = ((node as any)?.children || [])
+      .filter((c: any) => c.tagName === 'p')
+      .map(hastText)
+      .filter(Boolean)
+    const last = paragraphs[paragraphs.length - 1] || ''
+    const hasCite = paragraphs.length > 1 && /^[—–-]/.test(last)
+    const text = (hasCite ? paragraphs.slice(0, -1) : paragraphs).join(' ')
+    const cite = hasCite ? last.replace(/^[—–-]\s*/, '') : undefined
+    return <PullQuote text={text} cite={cite} />
+  },
+}
+
+interface ReadIssueProps {
+  issue: Issue
+  prev: IssueMeta | null
+  next: IssueMeta | null
+}
+
+const ReadIssue = ({ issue, prev, next }: ReadIssueProps) => {
   return (
     <article style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'clamp(32px,5vw,64px) var(--gutter) 0' }}>
       <Head><title>{`${issue.title} — [BTS] tulio`}</title></Head>
@@ -44,13 +74,7 @@ const ReadIssue = ({ slug }) => {
 
       {/* Body */}
       <div style={{ maxWidth: 'var(--measure)', marginTop: 'var(--space-2xl)' }}>
-        {issue.body.map((blk, i) => {
-          if (blk.type === 'h2')
-            return <h2 key={i} style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(1.375rem,2.6vw,1.75rem)', letterSpacing: '-0.02em', lineHeight: 1.18, margin: 'var(--space-2xl) 0 var(--space-s)' }}>{blk.text}</h2>
-          if (blk.type === 'quote')
-            return <PullQuote key={i} text={blk.text} cite={blk.cite} />
-          return <p key={i} style={{ fontSize: 19, lineHeight: 1.65, margin: '0 0 var(--space-l)', color: 'var(--text-primary)' }}>{blk.text}</p>
-        })}
+        <ReactMarkdown components={markdownComponents}>{issue.content}</ReactMarkdown>
       </div>
 
       {/* Footer nav */}
@@ -81,15 +105,24 @@ const ReadIssue = ({ slug }) => {
   )
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: ISSUES.map((i) => ({ params: { slug: i.slug } })),
+    paths: getAllIssues().map((i) => ({ params: { slug: i.slug } })),
     fallback: false,
   }
 }
 
-export async function getStaticProps({ params }) {
-  return { props: { slug: params.slug } }
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const issues = getAllIssues()
+  const idx = issues.findIndex((i) => i.slug === params?.slug)
+  const strip = ({ content, ...meta }: Issue): IssueMeta => meta
+  return {
+    props: {
+      issue: issues[idx],
+      prev: issues[idx + 1] ? strip(issues[idx + 1]) : null,
+      next: issues[idx - 1] ? strip(issues[idx - 1]) : null,
+    },
+  }
 }
 
 export default ReadIssue

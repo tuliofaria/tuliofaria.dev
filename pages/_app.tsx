@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import '../css/styles.css'
 import '@photo-sphere-viewer/core/index.css'
@@ -6,7 +7,7 @@ import { SiteHeader, SiteFooter } from '../components/kit'
 
 const LS = 'bts-tulio'
 
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {

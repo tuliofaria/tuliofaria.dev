@@ -8,7 +8,7 @@ import { NewsletterForm } from '../components/content'
 
 const PanoViewer = dynamic(() => import('../components/PanoViewer'), { ssr: false })
 
-const LINKS = [
+const LINKS: Array<[string, string, string | null]> = [
   ['ensaios', 'leitura semanal por escrito', '/ensaios'],
   ['vídeos', 'processos gravados em tempo real', null],
   ['newsletter', 'um envio por semana, no e-mail', '/newsletter'],

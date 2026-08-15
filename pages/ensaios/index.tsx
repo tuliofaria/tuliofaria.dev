@@ -1,18 +1,19 @@
 // [BTS] tulio — Issue list / ensaios
 import React, { useState } from 'react'
 import Head from 'next/head'
-import { ISSUES } from '../../data/site'
+import type { GetStaticProps } from 'next'
+import { getAllIssueMetas, type IssueMeta } from '../../lib/ensaios'
 import { Overline } from '../../components/kit'
 import { IssueRow } from '../../components/content'
 
-const IssueList = () => {
-  const allTags = ['todos', ...Array.from(new Set(ISSUES.flatMap((i) => i.tags)))]
+const IssueList = ({ issues }: { issues: IssueMeta[] }) => {
+  const allTags = ['todos', ...Array.from(new Set(issues.flatMap((i) => i.tags)))]
   const [filter, setFilter] = useState('todos')
-  const shown = filter === 'todos' ? ISSUES : ISSUES.filter((i) => i.tags.includes(filter))
+  const shown = filter === 'todos' ? issues : issues.filter((i) => i.tags.includes(filter))
   return (
     <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'clamp(40px,7vw,88px) var(--gutter) 0' }}>
       <Head><title>Ensaios — [BTS] tulio</title></Head>
-      <Overline>Ensaios · {ISSUES.length} {ISSUES.length === 1 ? 'edição' : 'edições'}</Overline>
+      <Overline>Ensaios · {issues.length} {issues.length === 1 ? 'edição' : 'edições'}</Overline>
       <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2.25rem,5vw,3.5rem)', letterSpacing: '-0.03em', lineHeight: 1.02, margin: '12px 0 0', maxWidth: '18ch' }}>
         Tudo que aprendi construindo, por escrito.
       </h1>
@@ -40,6 +41,10 @@ const IssueList = () => {
       </div>
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: { issues: getAllIssueMetas() } }
 }
 
 export default IssueList

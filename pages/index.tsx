@@ -1,12 +1,13 @@
 // [BTS] tulio — Home / início
 import React from 'react'
 import Link from 'next/link'
-import { ISSUES, PILLARS } from '../data/site'
+import type { GetStaticProps } from 'next'
+import { PILLARS } from '../data/site'
+import { getAllIssueMetas, type IssueMeta } from '../lib/ensaios'
 import { Button, Overline, Divider } from '../components/kit'
 import { IssueRow, NewsletterForm } from '../components/content'
 
-const Home = () => {
-  const latest = ISSUES.slice(0, 3)
+const Home = ({ issues }: { issues: IssueMeta[] }) => {
   return (
     <div>
       {/* Hero */}
@@ -33,7 +34,7 @@ const Home = () => {
           </Link>
         </div>
         <div style={{ borderTop: 'var(--rule-strong)' }}>
-          {latest.map((it) => <IssueRow key={it.slug} issue={it} />)}
+          {issues.map((it) => <IssueRow key={it.slug} issue={it} />)}
         </div>
       </section>
 
@@ -55,6 +56,10 @@ const Home = () => {
       </section>
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: { issues: getAllIssueMetas().slice(0, 3) } }
 }
 
 export default Home

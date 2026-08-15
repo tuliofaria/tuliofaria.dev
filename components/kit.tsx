@@ -7,7 +7,7 @@ import { PILLARS } from '../data/site'
 const WORDMARK_SRC = '/images/wordmark.png'
 const WORDMARK_ASPECT = 182 / 48
 
-export function Logo({ variant = 'wordmark', size = 26 }) {
+export function Logo({ variant = 'wordmark', size = 26 }: { variant?: 'wordmark' | 'mark'; size?: number }) {
   const inner =
     variant === 'mark' ? (
       <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, letterSpacing: '-0.04em', fontSize: size, lineHeight: 1 }}>[&nbsp;]</span>
@@ -25,14 +25,25 @@ export function Logo({ variant = 'wordmark', size = 26 }) {
   )
 }
 
-export function Button({ variant = 'primary', size = 'md', href, onClick, children, iconRight, type = 'button', style = {} }) {
+interface ButtonProps {
+  variant?: 'primary' | 'secondary' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
+  href?: string
+  onClick?: () => void
+  children: React.ReactNode
+  iconRight?: React.ReactNode
+  type?: 'button' | 'submit'
+  style?: React.CSSProperties
+}
+
+export function Button({ variant = 'primary', size = 'md', href, onClick, children, iconRight, type = 'button', style = {} }: ButtonProps) {
   const sizes = { sm: { fontSize: 13, padding: '8px 14px' }, md: { fontSize: 15, padding: '12px 20px' }, lg: { fontSize: 16, padding: '15px 26px' } }
   const variants = {
     primary: { background: 'var(--text-primary)', color: 'var(--text-on-inverse)', borderColor: 'var(--text-primary)' },
     secondary: { background: 'transparent', color: 'var(--text-primary)', borderColor: 'var(--border-strong)' },
     ghost: { background: 'transparent', color: 'var(--text-primary)', borderColor: 'transparent' },
   }
-  const styles = {
+  const styles: React.CSSProperties = {
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10,
     fontFamily: 'var(--font-mono)', fontWeight: 500, letterSpacing: '0.02em', lineHeight: 1,
     borderRadius: 'var(--radius-sm)', border: '1px solid transparent', cursor: 'pointer',
@@ -48,7 +59,7 @@ export function Button({ variant = 'primary', size = 'md', href, onClick, childr
   )
 }
 
-export function Tag({ variant = 'outline', children, style = {} }) {
+export function Tag({ variant = 'outline', children, style = {} }: { variant?: 'outline' | 'solid'; children: React.ReactNode; style?: React.CSSProperties }) {
   const variants = {
     outline: { border: 'var(--hairline)', color: 'var(--text-secondary)', background: 'transparent' },
     solid: { background: 'var(--text-primary)', color: 'var(--text-on-inverse)', border: '1px solid var(--text-primary)' },
@@ -62,7 +73,7 @@ export function Tag({ variant = 'outline', children, style = {} }) {
   )
 }
 
-export function Overline({ children, style = {} }) {
+export function Overline({ children, style = {} }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
     <div style={{
       fontFamily: 'var(--font-mono)', fontSize: 'var(--text-overline)', fontWeight: 500,
@@ -71,8 +82,8 @@ export function Overline({ children, style = {} }) {
   )
 }
 
-export function Divider({ label, align = 'center', style = {} }) {
-  const line = { flex: 1, borderTop: 'var(--hairline)' }
+export function Divider({ label, align = 'center', style = {} }: { label?: string; align?: 'left' | 'center' | 'right'; style?: React.CSSProperties }) {
+  const line: React.CSSProperties = { flex: 1, borderTop: 'var(--hairline)' }
   if (!label) return <hr style={{ border: 'none', borderTop: 'var(--hairline)', margin: 0, ...style }} />
   return (
     <div role='separator' style={{ display: 'flex', alignItems: 'center', gap: 16, ...style }}>
@@ -83,7 +94,7 @@ export function Divider({ label, align = 'center', style = {} }) {
   )
 }
 
-export function Avatar({ initials, size = 44, style = {} }) {
+export function Avatar({ initials, size = 44, style = {} }: { initials: string; size?: number; style?: React.CSSProperties }) {
   return (
     <span style={{
       width: size, height: size, borderRadius: 'var(--radius-sm)', border: 'var(--hairline)',
@@ -101,7 +112,7 @@ const NAV = [
   { href: '/newsletter', label: 'newsletter' },
 ]
 
-export function SiteHeader({ theme, toggleTheme }) {
+export function SiteHeader({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const router = useRouter()
   return (
     <header style={{

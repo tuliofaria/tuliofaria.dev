@@ -3,8 +3,9 @@ import { Viewer } from '@photo-sphere-viewer/core'
 import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin'
 
 const PanoViewer = () => {
-  const viewerRef = useRef()
+  const viewerRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
+    if (!viewerRef.current) return
     const viewer = new Viewer({
       navbar: ['autorotate', 'zoom', 'caption', 'fullscreen'],
       container: viewerRef.current,

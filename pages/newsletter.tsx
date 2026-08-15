@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { Overline } from '../components/kit'
 import { NewsletterForm } from '../components/content'
 
-const STATS = [['semanal', 'frequência'], ['0', 'spam'], ['2 min', 'leitura']]
+const STATS: Array<[string, string]> = [['semanal', 'frequência'], ['0', 'spam'], ['2 min', 'leitura']]
 
 const NewsletterPage = () => {
   return (

@@ -2,8 +2,9 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { Tag, Button } from './kit'
+import type { IssueMeta } from '../lib/ensaios'
 
-export function IssueRow({ issue }) {
+export function IssueRow({ issue }: { issue: IssueMeta }) {
   return (
     <Link href={`/ensaios/${issue.slug}`}
       className='kit-issue'
@@ -34,7 +35,7 @@ export function IssueRow({ issue }) {
   )
 }
 
-export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', note = 'Um envio por semana. Sem spam, sem hype.', buttonLabel = 'Assinar' }) {
+export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', note = 'Um envio por semana. Sem spam, sem hype.', buttonLabel = 'Assinar' }: { title?: string; note?: string; buttonLabel?: string }) {
   const [email, setEmail] = useState('')
   const [done, setDone] = useState(false)
   return (
@@ -60,7 +61,7 @@ export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', 
   )
 }
 
-export function PullQuote({ text, cite }) {
+export function PullQuote({ text, cite }: { text: string; cite?: string }) {
   return (
     <figure style={{ margin: 'var(--space-2xl) 0', paddingLeft: 'var(--space-l)', borderLeft: '2px solid var(--text-primary)' }}>
       <blockquote style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(1.375rem, 2.6vw, 1.875rem)', letterSpacing: '-0.02em', lineHeight: 1.25, margin: 0 }}>
