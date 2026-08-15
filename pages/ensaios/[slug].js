@@ -31,8 +31,8 @@ const ReadIssue = ({ slug }) => {
           {issue.title}
         </h1>
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-m)', marginTop: 'var(--space-l)', paddingTop: 'var(--space-l)', borderTop: 'var(--hairline)' }}>
-          <img src='/images/tulio-faria.png' alt='Tulio'
-            style={{ width: 42, height: 42, flex: 'none', objectFit: 'cover', objectPosition: 'top', borderRadius: 'var(--radius-md)', border: 'var(--hairline)', filter: 'grayscale(0.18) saturate(0.92)' }} />
+          <img src='/images/tulio-portrait.webp' alt='Tulio'
+            style={{ width: 42, height: 42, flex: 'none', objectFit: 'cover', borderRadius: 'var(--radius-md)', border: 'var(--hairline)', filter: 'grayscale(0.18) saturate(0.92)' }} />
           <div>
             <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15 }}>Tulio</div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-secondary)', letterSpacing: '0.03em' }}>

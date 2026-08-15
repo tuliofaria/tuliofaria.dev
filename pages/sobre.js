@@ -25,8 +25,8 @@ const About = () => {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr)', gap: 'var(--space-2xl)', marginTop: 'var(--space-2xl)' }}>
         <div style={{ display: 'flex', gap: 'var(--space-2xl)', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-          <img src='/images/tulio-faria.png' alt='Tulio Faria'
-            style={{ width: 200, height: 260, flex: 'none', objectFit: 'cover', objectPosition: 'top', borderRadius: 'var(--radius-md)', border: 'var(--hairline)', filter: 'grayscale(0.18) saturate(0.92)' }} />
+          <img src='/images/tulio-portrait.webp' alt='Tulio Faria'
+            style={{ width: 200, height: 260, flex: 'none', objectFit: 'cover', borderRadius: 'var(--radius-md)', border: 'var(--hairline)', filter: 'grayscale(0.18) saturate(0.92)' }} />
           <div style={{ maxWidth: 'var(--measure)', flex: '1 1 360px' }}>
             <p style={{ fontSize: 19, lineHeight: 1.65, margin: '0 0 var(--space-l)' }}>
               Sou Tulio. Construo produtos digitais há mais de uma década — alguns deram certo, outros viraram ensaio. Aqui eu documento os bastidores: as decisões, os erros e o processo, não só o resultado.
