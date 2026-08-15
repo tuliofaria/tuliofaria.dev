@@ -12,7 +12,7 @@ const IssueList = () => {
   return (
     <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'clamp(40px,7vw,88px) var(--gutter) 0' }}>
       <Head><title>Ensaios — [BTS] tulio</title></Head>
-      <Overline>Ensaios · {ISSUES.length} edições</Overline>
+      <Overline>Ensaios · {ISSUES.length} {ISSUES.length === 1 ? 'edição' : 'edições'}</Overline>
       <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2.25rem,5vw,3.5rem)', letterSpacing: '-0.03em', lineHeight: 1.02, margin: '12px 0 0', maxWidth: '18ch' }}>
         Tudo que aprendi construindo, por escrito.
       </h1>
