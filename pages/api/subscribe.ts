@@ -16,7 +16,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'E-mail inválido' })
   }
 
-  const base = process.env.SELVA_MAIL_API_URL
+  // Tolerate a trailing slash or an included /api/v1 in the configured URL —
+  // either one turns the request path into a 404 on the API server.
+  const base = (process.env.SELVA_MAIL_API_URL || '')
+    .replace(/\/+$/, '')
+    .replace(/\/api\/v1$/, '')
   const listId = process.env.SELVA_MAIL_LIST_ID
   const apiKey = process.env.SELVA_MAIL_API_KEY
   if (!base || !listId || !apiKey) {
