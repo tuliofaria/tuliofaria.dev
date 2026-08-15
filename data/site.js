@@ -3,18 +3,18 @@
 export const ISSUES = [
   {
     n: 'N°01',
-    slug: 'one-person-business',
+    slug: 'varios-negocios-quase-sozinho',
     title: 'Sumi por meses. Foi isso que eu estive construindo',
     excerpt:
-      'One Person Business: como estou criando e operando vários negócios quase sozinho — com IA, automação e sociedade com especialistas.',
+      'Como estou criando e operando vários negócios quase sozinho — com IA, automação e sociedade com especialistas.',
     tags: ['negócios', 'tecnologia'],
     date: '15 ago 2026',
     read: '7 min',
     body: [
-      { type: 'p', text: 'Não, o DevPleno não acabou. Eu sumi por um tempo, mas não parei: nesses meses estive construindo produtos, testando linhas de negócio e organizando tudo isso em um modelo que chamo de One Person Business — criar e tocar vários negócios praticamente sozinho, com IA, automação e sociedade com especialistas. Este é o primeiro ensaio dos bastidores dessa história.' },
+      { type: 'p', text: 'Não, o DevPleno não acabou. Eu sumi por um tempo, mas não parei: nesses meses estive construindo produtos, testando linhas de negócio e organizando tudo isso em um jeito próprio de operar: criar e tocar vários negócios praticamente sozinho, com IA, automação e sociedade com especialistas. Este é o primeiro ensaio dos bastidores dessa história.' },
       { type: 'h2', text: 'O gargalo sempre fui eu' },
       { type: 'p', text: 'Mesmo tendo equipe, tudo passava por mim — e isso limitava o quanto era possível executar. Cada decisão, cada revisão, cada projeto novo esbarrava na mesma fila. Com IA, o gargalo não desaparece, mas diminui muito. É exatamente por isso que hoje dá para tocar várias frentes ao mesmo tempo sem que nenhuma delas pare para esperar a minha agenda.' },
-      { type: 'h2', text: 'One Person Business + especialista' },
+      { type: 'h2', text: 'Sozinho na operação, sócio no nicho' },
       { type: 'p', text: 'O ponto central: hoje dá para fazer quase tudo com IA — marketing, programação, operação — independentemente de você ser programador ou não. Só que isso cria um paradoxo. Se qualquer pessoa pode "ser especialista" em qualquer coisa, o que diferencia um negócio do outro?' },
       { type: 'quote', text: 'Se todo mundo pode ser especialista com IA, o diferencial passa a ser quem conduz a conversa.', cite: 'tese da edição' },
       { type: 'p', text: 'Daí a estratégia: juntar a minha experiência de programação e orquestração com a expertise de alguém que conhece o mercado de verdade. Não sou eu perguntando para a IA sobre um mercado que não conheço; é o especialista ditando o caminho e usando a IA junto. Na prática, isso virou sociedade com gente de gestão, com advogado, e assim por diante — várias linhas de faturamento, cada uma com um parceiro de nicho.' },
