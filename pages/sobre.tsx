@@ -30,10 +30,10 @@ const About = () => {
             style={{ width: 200, height: 260, flex: 'none', objectFit: 'cover', borderRadius: 'var(--radius-md)', border: 'var(--hairline)', filter: 'grayscale(0.18) saturate(0.92)' }} />
           <div style={{ maxWidth: 'var(--measure)', flex: '1 1 360px' }}>
             <p style={{ fontSize: 19, lineHeight: 1.65, margin: '0 0 var(--space-l)' }}>
-              Sou Tulio. Construo produtos digitais há mais de uma década — alguns deram certo, outros viraram ensaio. Sou o criador do <a href='https://www.youtube.com/@devpleno' target='_blank' rel='noreferrer' style={{ textDecoration: 'underline' }}>DevPleno</a>, canal no YouTube sobre programação, carreira e construção de produtos. Aqui eu documento os bastidores: as decisões, os erros e o processo, não só o resultado.
+              Sou Tulio. Construo produtos digitais há mais de uma década: alguns deram certo, outros viraram ensaio. Sou o criador do <a href='https://www.youtube.com/@devpleno' target='_blank' rel='noreferrer' style={{ textDecoration: 'underline' }}>DevPleno</a>, canal no YouTube sobre programação, carreira e construção de produtos. Aqui eu documento os bastidores: as decisões, os erros e o processo, não só o resultado.
             </p>
             <p style={{ fontSize: 19, lineHeight: 1.65, margin: '0 0 var(--space-l)', color: 'var(--text-secondary)' }}>
-              Acredito que construir em público é estratégia, não vaidade. E que a clareza — escrever de um jeito que não precise ser explicado duas vezes — é a habilidade mais subestimada de quem cria.
+              Acredito que construir em público é estratégia, não vaidade. E que a clareza (escrever de um jeito que não precise ser explicado duas vezes) é a habilidade mais subestimada de quem cria.
             </p>
             <p style={{ fontSize: 19, lineHeight: 1.65, margin: 0, color: 'var(--text-secondary)' }}>
               Sem hype, sem fórmula de sucesso. Só o que dá pra aprender olhando o trabalho de perto.

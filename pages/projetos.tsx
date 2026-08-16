@@ -11,7 +11,7 @@ const Projects = () => {
       <Head><title>Projetos — [BTS] tulio</title></Head>
       <Overline>Projetos</Overline>
       <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2.25rem,5.5vw,3.75rem)', letterSpacing: '-0.03em', lineHeight: 1.02, margin: '12px 0 0', maxWidth: '20ch' }}>
-        Coisas que construí — e o que virou de cada uma.
+        Coisas que construí, e o que virou de cada uma.
       </h1>
       <p style={{ fontSize: 'clamp(1.05rem,2vw,1.25rem)', color: 'var(--text-secondary)', marginTop: 'var(--space-l)', maxWidth: '48ch', lineHeight: 1.45 }}>
         Nem tudo deu certo. Os arquivados ensinaram tanto quanto os ativos.

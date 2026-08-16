@@ -16,7 +16,7 @@ const NewsletterPage = () => {
           Os bastidores, direto no seu e-mail.
         </h1>
         <p style={{ fontSize: 'clamp(1.125rem,2.2vw,1.375rem)', color: 'var(--text-secondary)', marginTop: 'var(--space-l)', lineHeight: 1.5, maxWidth: '46ch' }}>
-          Um ensaio por semana sobre criação, produto e tecnologia. Sem spam, sem hype, sem “segredo que ninguém te conta”.
+          Um ensaio por semana sobre criação, produto e tecnologia. Sem spam, sem hype, sem "segredo que ninguém te conta".
         </p>
         <div style={{ marginTop: 'var(--space-2xl)', borderTop: 'var(--hairline)', paddingTop: 'var(--space-2xl)' }}>
           <NewsletterForm title='Assine agora.' buttonLabel='Quero receber' />
