@@ -22,6 +22,14 @@ const markdownComponents: Components = {
   p: ({ children }) => (
     <p style={{ fontSize: 19, lineHeight: 1.65, margin: '0 0 var(--space-l)', color: 'var(--text-primary)' }}>{children}</p>
   ),
+  // The base rule strips link styling (color: inherit, no underline), so body links mark themselves.
+  a: ({ href, children }) => {
+    const external = /^https?:/.test(href || '')
+    return (
+      <a href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        style={{ color: 'inherit', textDecoration: 'underline', textDecorationThickness: 1, textUnderlineOffset: '0.18em' }}>{children}</a>
+    )
+  },
   blockquote: ({ node }) => {
     const paragraphs = ((node as any)?.children || [])
       .filter((c: any) => c.tagName === 'p')
