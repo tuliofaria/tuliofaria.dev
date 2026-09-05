@@ -87,4 +87,4 @@ E se você acha que isso é rigor demais para a vida real, lembre-se: é exatame
 
 ---
 
-Assista ao vídeo completo em [Definindo objetivos](LINK_DO_VIDEO). Lá eu mostro o goal rodando de ponta a ponta, as medições página por página e o resultado final na tela.
+Assista ao vídeo completo em [Definindo objetivos](https://www.youtube.com/watch?v=s9InqgabNzg). Lá eu mostro o goal rodando de ponta a ponta, as medições página por página e o resultado final na tela.
