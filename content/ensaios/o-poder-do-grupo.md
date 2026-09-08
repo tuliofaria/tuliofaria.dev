@@ -14,7 +14,7 @@ Imagine receber uma mensagem de alguém que trabalha com você: "Boss, a gente p
 
 Quando foge da reunião marcada, eu já fico gelado. Quase sempre é notícia ruim. Dessa vez a mensagem veio no fim de uma semana que eu considerava praticamente perfeita — clientes novos em todos os negócios, elogio público no emprego no exterior, rascunho de um projeto semente. E ainda assim chegou o "precisa conversar".
 
-A conversa era com o Renato. Vocês já o conhecem do DevPleno. Ele queria se desligar dos freelas pra colocar mais energia no SaaS dele. Também trabalha no exterior. Também tem negócio do lado. Também tinha tido uma semana parecida com a minha. A diferença é que ele decidiu usar as horas que sobravam do dia pra empurrar o próprio produto — não pra entregar mais demanda minha.
+A conversa era com o Renato. Vocês já o conhecem do DevPleno. Ele queria se desligar dos freelas pra colocar mais energia no SaaS dele. Também trabalha no exterior. Também tem negócios em paralelo. Também tinha tido uma semana parecida com a minha. A diferença é que ele decidiu usar as horas que sobravam do dia pra empurrar o próprio produto — não pra entregar mais demanda minha.
 
 Parecia o fim ruim de uma semana boa. Olhando de novo, era o começo do argumento deste ensaio.
 
