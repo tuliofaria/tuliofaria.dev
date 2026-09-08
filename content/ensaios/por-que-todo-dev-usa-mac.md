@@ -23,7 +23,7 @@ Isso não faz do Mac uma ferramenta melhor por si. Faz dele um objeto social. Se
 
 ## O motivo técnico que realmente aperta
 
-No meu caso, a troca não começou por estética. Começou porque boa parte do tempo eu também construo app mobile. Com Ionic, por exemplo, o alvo é Android e iOS. No Windows e no Linux você até avança no Android. No iOS a porta fecha: build nativo, simulador e publicação na App Store passam pelo ecossistema Apple.
+No meu caso, a troca não começou por estética. Começou porque boa parte do tempo eu também construo app mobile. Com React Native, por exemplo, o alvo é Android e iOS. No Windows e no Linux você até avança no Android. No iOS a porta fecha: build nativo, simulador e publicação na App Store passam pelo ecossistema Apple.
 
 Eu tentei o caminho longo antes de comprar. Máquina com bastante RAM, virtualização, tentar rodar macOS por cima. Em teoria sobra memória pro guest. Na prática a experiência não é a mesma. O emulador de iOS sofre. Empilhar Android dentro de um Mac emulado dentro de Windows ou Linux vira sanduíche: para de funcionar direito e o calendário atrasa.
 
