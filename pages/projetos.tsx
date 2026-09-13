@@ -22,7 +22,7 @@ const Projects = () => {
           <div key={p.name} className='kit-proj'
             style={{ display: 'grid', gridTemplateColumns: 'minmax(160px,1fr) 2fr auto', gap: 'var(--space-l)', alignItems: 'baseline', padding: 'var(--space-l) 0', borderBottom: 'var(--hairline)' }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(1.375rem,2.6vw,1.875rem)', letterSpacing: '-0.02em', margin: 0 }}>
-              {p.url ? <a href={p.url} target='_blank' rel='noreferrer'>{p.name}</a> : p.name}
+              {p.url ? <a href={p.url} target={p.url.startsWith('/') ? undefined : '_blank'} rel={p.url.startsWith('/') ? undefined : 'noreferrer'}>{p.name}</a> : p.name}
             </h3>
             <p style={{ fontSize: 16, color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>{p.desc}</p>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', justifySelf: 'end', whiteSpace: 'nowrap' }}>
