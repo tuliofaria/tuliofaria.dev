@@ -9,6 +9,7 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [
+  { name: 'Estúdio 3D', desc: 'Uma visita interativa ao estúdio DevPleno, reconstruído no Blender e explorável em 3D.', year: '2026', status: 'ativo', url: '/projetos/estudio-3d/' },
   { name: 'PipesBot', desc: 'WhatsApp como infraestrutura para qualquer aplicação, com número oficial ou coexistência.', year: '2026', status: 'ativo', url: 'https://pipes.bot' },
   { name: 'Selva CMS', desc: 'CMS open source, multi-tenant e serverless, gerenciável via MCP.', year: '2026', status: 'ativo', url: 'https://selva.run' },
   { name: 'Selva Mail', desc: 'E-mail transacional e de marketing rodando na sua própria conta AWS.', year: '2026', status: 'ativo', url: 'https://selva.run' },

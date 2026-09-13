@@ -47,3 +47,19 @@ Este projeto é licenciado sobre a licença MIT - veja [LICENSE.md](LICENSE.md) 
 ## Acknowledgments
 
 * Este projeto foi construído durante as aulas do Fullstack Master do [DevPleno](https://devpleno.com).
+
+## Estúdio 3D
+
+A página `/projetos/estudio-3d/` incorpora o visualizador em
+`public/estudio-3d/viewer.html`. O modelo `studio.glb` é carregado separadamente
+(cerca de 6,8 MiB); bibliotecas e modelo são servidos pelo próprio site.
+O visualizador fica isolado em um iframe para liberar o contexto WebGL ao sair
+da página e não carregar Three.js nas demais páginas.
+
+Para alterar os controles ou a iluminação, edite `lib/studio-viewer.js` e execute
+`npm run build:studio`. Commitar também o `public/estudio-3d/viewer.js` gerado.
+Para atualizar a cena, substitua `public/estudio-3d/studio.glb` e a prévia.
+Valide com `npm run build`, abra a rota e confira desktop, celular e controles.
+
+O modelo é uma reconstrução aproximada; a estampa do personagem ainda tem
+artefatos da geração. A iluminação do navegador difere do render Blender.
