@@ -35,6 +35,8 @@ Eu virei um bonecão. Camiseta errada. Plaquinha da Conta49 ilegível. A saída 
 
 Chamei o Higgsfield por MCP só para refinar o personagem. A diferença foi absurda: a camiseta ficou precisa, a plaquinha ficou legível. Fiz pente fino nos quadrinhos e nos outros elementos. No fim, ele exportou tudo para HTML com Three.js: zoom, variações e controle de luz rodando no navegador.
 
+[Explore o estúdio em 3D](/projetos/estudio-3d/): gire a cena, aproxime os detalhes e experimente os controles de luz no navegador.
+
 Sobrou errinho de posicionamento. Dava para abrir a cena inteira no Blender e ajustar. Mas o ponto já estava feito: a cena existia, navegável, sem eu ter dominado a ferramenta.
 
 > Dá para entregar coisa boa numa ferramenta que você não domina. Quando bater numa limitação, troque de ferramenta — não insista no prompt.
