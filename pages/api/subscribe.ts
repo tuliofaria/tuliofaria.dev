@@ -2,13 +2,57 @@
 // Two-step flow per the Selva Mail REST API: upsert the contact by
 // email, then attach its id to the list. Requires an ADMIN API key,
 // so this runs server-side only.
+//
+// Bot protection: honeypot field `website` (must be empty) + simple
+// in-memory rate limit per IP. Cold starts reset the map — fine for
+// this small site on Vercel serverless.
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000 // 15 minutes
+const RATE_LIMIT_MAX = 5
+
+type Bucket = { count: number; resetAt: number }
+const rateBuckets = new Map<string, Bucket>()
+
+function clientIp(req: NextApiRequest): string {
+  const forwarded = req.headers['x-forwarded-for']
+  if (typeof forwarded === 'string' && forwarded.length > 0) {
+    return forwarded.split(',')[0].trim()
+  }
+  if (Array.isArray(forwarded) && forwarded[0]) {
+    return forwarded[0].split(',')[0].trim()
+  }
+  const realIp = req.headers['x-real-ip']
+  if (typeof realIp === 'string' && realIp.length > 0) return realIp
+  return req.socket?.remoteAddress || 'unknown'
+}
+
+function rateLimited(ip: string): boolean {
+  const now = Date.now()
+  const bucket = rateBuckets.get(ip)
+  if (!bucket || now >= bucket.resetAt) {
+    rateBuckets.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    return false
+  }
+  bucket.count += 1
+  return bucket.count > RATE_LIMIT_MAX
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
+  }
+
+  // Honeypot: bots that autofill hidden fields get a fake success.
+  const website = typeof req.body?.website === 'string' ? req.body.website.trim() : ''
+  if (website) {
+    return res.status(200).json({ ok: true })
+  }
+
+  if (rateLimited(clientIp(req))) {
+    return res.status(429).json({ error: 'Muitas tentativas. Tente de novo em alguns minutos.' })
   }
 
   const email = typeof req.body?.email === 'string' ? req.body.email.trim() : ''
