@@ -37,6 +37,8 @@ export function IssueRow({ issue }: { issue: IssueMeta }) {
 
 export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', note = 'Um envio por semana. Sem spam, sem hype.', buttonLabel = 'Assinar' }: { title?: string; note?: string; buttonLabel?: string }) {
   const [email, setEmail] = useState('')
+  // Honeypot — bots fill this; humans never see it.
+  const [company, setCompany] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
 
   const submit = async (e: React.FormEvent) => {
@@ -47,7 +49,7 @@ export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', 
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, company }),
       })
       setStatus(res.ok ? 'done' : 'error')
     } catch {
@@ -65,6 +67,19 @@ export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', 
       ) : (
         <form onSubmit={submit}
           style={{ display: 'flex', gap: 'var(--space-m)', alignItems: 'flex-end', maxWidth: 460, flexWrap: 'wrap' }}>
+          {/* Honeypot: hidden from humans; leave empty. */}
+          <div aria-hidden='true' style={{ position: 'absolute', left: '-10000px', top: 'auto', width: 1, height: 1, overflow: 'hidden' }}>
+            <label htmlFor='newsletter-company'>Empresa</label>
+            <input
+              id='newsletter-company'
+              type='text'
+              name='company'
+              tabIndex={-1}
+              autoComplete='off'
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+            />
+          </div>
           <div style={{ flex: '1 1 240px' }}>
             <input type='email' required placeholder='seu@email.com' value={email} aria-label='E-mail'
               onChange={(e) => setEmail(e.target.value)}
