@@ -48,7 +48,11 @@ Uma métrica feia e útil: se você parar amanhã, o que acontece com o faturame
 
 A gente infla o ego com facilidade. Acha que vale mais do que a contribuição objetiva sustenta. O contrário também acontece: tem gente gerando muito e aceitando pouco por medo ou por falta de conversa. Os dois erros existem. Se a contribuição já está lá, o caminho é negociar — ou mudar de lugar quando o lugar não paga. Se ainda não está, é preciso mudar a entrega.
 
-> A gente chama de "salário baixo em TI" o que muitas vezes é contribuição baixa, régua mal escolhida ou posição mediana numa área com faixa larga. O número sobe quando sobe o que a gente gera — e o risco que a gente assume — não quando a gente só reclama da média.
+E a IA entra nessa conta. Se você usa a ferramenta pra entregar código mais rápido, o que mudou pro negócio? O produto chegou antes? Caiu o retrabalho? Você conseguiu resolver um problema que antes ficava parado? É aí que o ganho de produtividade começa a virar argumento pra pedir mais. Ter mais código no repositório, sozinho, diz pouco.
+
+Só que produzir mais também não garante receber mais. Se a contribuição cresceu, você precisa conseguir mostrar isso e ter espaço pra negociar. A empresa pode ficar com o ganho inteiro. Volta aquela pergunta: quanto você passou a gerar e quem está disposto a pagar por essa entrega?
+
+> A gente chama de "salário baixo em TI" o que muitas vezes é contribuição baixa, régua mal escolhida ou posição mediana numa área com faixa larga. Gerar mais fortalece a negociação, mas o salário também depende do mercado e das alternativas que você tem.
 >
 > — tese da edição
 
