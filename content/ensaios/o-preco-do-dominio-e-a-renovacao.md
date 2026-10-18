@@ -1,5 +1,5 @@
 ---
-n: 11
+n: 12
 title: "O preço do domínio é a renovação"
 excerpt: "Você criou o app com IA e travou no nome. GoDaddy vende barato no primeiro ano e cobra caro depois. Eu pesquiso ideia num lugar e compro noutro — e o nome precisa sobreviver a uma ligação."
 tags:

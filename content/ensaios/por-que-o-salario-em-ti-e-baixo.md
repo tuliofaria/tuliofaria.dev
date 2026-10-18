@@ -1,5 +1,5 @@
 ---
-n: 11
+n: 8
 title: "Por que o salário em TI é baixo (e por que o problema quase nunca é a área)"
 excerpt: "A gente reclama que TI paga mal. Antes de culpar o mercado, vale perguntar quanto a gente gera pra empresa e se o currículo sustenta o número que a gente quer. A área tem faixa larga — a média só descreve o meio."
 tags:

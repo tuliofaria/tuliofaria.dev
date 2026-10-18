@@ -1,5 +1,5 @@
 ---
-n: 12
+n: 13
 title: "O limite é o quanto você pergunta"
 excerpt: "Eu fui fazer engenharia reversa de um app Android e acabei com o Claude Code deixando meu celular mais rápido. A ferramenta já estava ali. O que faltava era a pergunta."
 tags:
