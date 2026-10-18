@@ -1,5 +1,5 @@
 ---
-n: 9
+n: 10
 title: "O músculo de dissecar problemas (e o que sobra quando a IA digita)"
 excerpt: "Medi um lote de 400m² no Google Maps e abri uma sessão no Claude só pra ver se dava estacionamento. O valor não era o plano de negócio. Era treinar o músculo que a gente mais usa como programador — e que a IA não substitui."
 tags:

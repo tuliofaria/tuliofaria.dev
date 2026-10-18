@@ -1,5 +1,5 @@
 ---
-n: 8
+n: 9
 title: "Experimente ser novato: deixe o modelo conduzir"
 excerpt: "Mandei uma foto do estúdio antigo do DevPleno pro ChatGPT e fiquei perguntando só 'qual o próximo passo?'. Ele montou a cena no Blender, refinou o personagem no Higgsfield e exportou Three.js. A lição não foi o Blender."
 tags:

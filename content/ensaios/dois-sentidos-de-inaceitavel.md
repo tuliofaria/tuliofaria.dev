@@ -1,5 +1,5 @@
 ---
-n: 10
+n: 11
 title: "Os dois sentidos de inaceitável"
 excerpt: "O Lucas Montano disse que é inaceitável um dev profissional não pagar uma ou duas assinaturas de IA. A internet pegou fogo — e misturou duas conversas. Uma é salário. A outra é ficar pra trás de propósito."
 tags:
