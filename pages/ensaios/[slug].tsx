@@ -7,6 +7,7 @@ import ReactMarkdown, { type Components } from 'react-markdown'
 import { getAllIssues, type Issue, type IssueMeta } from '../../lib/ensaios'
 import { Overline, Tag } from '../../components/kit'
 import { NewsletterForm, PullQuote } from '../../components/content'
+import { useT, useLocale, essaysPath, LOCALES } from '../../lib/i18n'
 
 // Flattens a hast node to its plain text content.
 function hastText(node: any): string {
@@ -50,12 +51,14 @@ interface ReadIssueProps {
 }
 
 const ReadIssue = ({ issue, prev, next }: ReadIssueProps) => {
+  const t = useT().essays
+  const locale = useLocale()
   return (
     <article style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'clamp(32px,5vw,64px) var(--gutter) 0' }}>
       <Head><title>{`${issue.title} — [BTS] tulio`}</title></Head>
-      <Link href='/ensaios' className='kit-navlink'
+      <Link href={essaysPath(locale)} className='kit-navlink'
         style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--text-secondary)', letterSpacing: '0.04em' }}>
-        ← ensaios
+        {t.back}
       </Link>
 
       {/* Header */}
@@ -63,7 +66,7 @@ const ReadIssue = ({ issue, prev, next }: ReadIssueProps) => {
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           <Overline>{issue.n}</Overline>
           <span style={{ color: 'var(--border-hairline)' }}>·</span>
-          {issue.tags.map((t) => <Tag key={t}>{t}</Tag>)}
+          {issue.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
         </div>
         <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2.25rem,5.5vw,3.75rem)', letterSpacing: '-0.03em', lineHeight: 1.02, margin: 'var(--space-m) 0 0' }}>
           {issue.title}
@@ -74,7 +77,7 @@ const ReadIssue = ({ issue, prev, next }: ReadIssueProps) => {
           <div>
             <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15 }}>Tulio</div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-secondary)', letterSpacing: '0.03em' }}>
-              {issue.date} · {issue.read} de leitura
+              {issue.date} · {t.read(issue.read)}
             </div>
           </div>
         </div>
@@ -89,16 +92,16 @@ const ReadIssue = ({ issue, prev, next }: ReadIssueProps) => {
       <nav style={{ maxWidth: 'var(--measure)', marginTop: 'var(--space-3xl)', borderTop: 'var(--hairline)', paddingTop: 'var(--space-l)', display: 'flex', justifyContent: 'space-between', gap: 'var(--space-l)' }}>
         <div style={{ flex: 1 }}>
           {prev && (
-            <Link href={`/ensaios/${prev.slug}`} className='kit-stack' style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 6 }}>← anterior</div>
+            <Link href={essaysPath(locale, prev.slug)} className='kit-stack' style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 6 }}>{t.prev}</div>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 17, letterSpacing: '-0.01em', lineHeight: 1.2 }}>{prev.title}</div>
             </Link>
           )}
         </div>
         <div style={{ flex: 1, textAlign: 'right' }}>
           {next && (
-            <Link href={`/ensaios/${next.slug}`} className='kit-stack' style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 6 }}>próximo →</div>
+            <Link href={essaysPath(locale, next.slug)} className='kit-stack' style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 6 }}>{t.next}</div>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 17, letterSpacing: '-0.01em', lineHeight: 1.2 }}>{next.title}</div>
             </Link>
           )}
@@ -107,7 +110,7 @@ const ReadIssue = ({ issue, prev, next }: ReadIssueProps) => {
 
       {/* Newsletter */}
       <div style={{ maxWidth: 'var(--measure)', marginTop: 'var(--space-3xl)', borderTop: 'var(--hairline)', paddingTop: 'var(--space-2xl)' }}>
-        <NewsletterForm title='Não perca o próximo ensaio.' />
+        <NewsletterForm title={t.newsletterTitle} />
       </div>
     </article>
   )
@@ -115,13 +118,13 @@ const ReadIssue = ({ issue, prev, next }: ReadIssueProps) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: getAllIssues().map((i) => ({ params: { slug: i.slug } })),
+    paths: LOCALES.flatMap((locale) => getAllIssues(locale).map((i) => ({ params: { slug: i.slug }, locale }))),
     fallback: false,
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const issues = getAllIssues()
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  const issues = getAllIssues(locale)
   const idx = issues.findIndex((i) => i.slug === params?.slug)
   const strip = ({ content, ...meta }: Issue): IssueMeta => meta
   return {

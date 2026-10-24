@@ -1,9 +1,16 @@
-// Loads essays from content/ensaios/*.md (server-side only — use in getStaticProps)
+// Loads essays from content/ensaios/*.md (server-side only — use in getStaticProps).
+// pt-BR files sit at the root of content/ensaios; each English translation lives
+// at content/ensaios/en/<same-slug>.md so both versions share one URL slug.
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { toLocale } from './i18n'
 
 const ENSAIOS_DIR = path.join(process.cwd(), 'content', 'ensaios')
+
+function dirFor(locale?: string): string {
+  return toLocale(locale) === 'en' ? path.join(ENSAIOS_DIR, 'en') : ENSAIOS_DIR
+}
 
 export interface IssueMeta {
   slug: string
@@ -20,13 +27,15 @@ export interface Issue extends IssueMeta {
   content: string
 }
 
-export function getAllIssues(): Issue[] {
+export function getAllIssues(locale?: string): Issue[] {
+  const dir = dirFor(locale)
+  if (!fs.existsSync(dir)) return []
   return fs
-    .readdirSync(ENSAIOS_DIR)
+    .readdirSync(dir)
     .filter((f) => f.endsWith('.md'))
     .map((f) => {
       const slug = f.replace(/\.md$/, '')
-      const { data, content } = matter(fs.readFileSync(path.join(ENSAIOS_DIR, f), 'utf8'))
+      const { data, content } = matter(fs.readFileSync(path.join(dir, f), 'utf8'))
       return {
         slug,
         order: data.n as number,
@@ -42,6 +51,6 @@ export function getAllIssues(): Issue[] {
     .sort((a, b) => b.order - a.order)
 }
 
-export function getAllIssueMetas(): IssueMeta[] {
-  return getAllIssues().map(({ content, ...meta }) => meta)
+export function getAllIssueMetas(locale?: string): IssueMeta[] {
+  return getAllIssues(locale).map(({ content, ...meta }) => meta)
 }

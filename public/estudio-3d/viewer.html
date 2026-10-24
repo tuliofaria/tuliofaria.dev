@@ -8,4 +8,18 @@
 <div id="status" role="status" aria-live="polite">Abrindo o estúdio…</div>
 <p class="hint">Arraste para explorar · Role ou use dois dedos para aproximar</p>
 <nav class="toolbar" aria-label="Controles da cena"><button data-view="iso" aria-pressed="true">Isométrica</button><button data-view="front" aria-pressed="false">Frontal</button><button data-view="top" aria-pressed="false">Superior</button><span class="divider"></span><button id="rotate" aria-pressed="false">Girar</button><button id="reset">Reiniciar</button><label class="exposure">Luz <input id="light" aria-label="Intensidade da iluminação" type="range" min="0.5" max="1.8" step="0.05" value="1"></label></nav>
+<script>
+// English UI when embedded as viewer.html?lang=en (the /en/projetos/estudio-3d page).
+if(new URLSearchParams(location.search).get('lang')==='en'){
+ document.documentElement.lang='en';document.title='DevPleno Studio · 3D';
+ const $=s=>document.querySelector(s);
+ $('canvas').setAttribute('aria-label','The DevPleno studio in 3D. Drag to rotate and use the mouse wheel or two fingers to zoom.');
+ $('#status').textContent='Opening the studio…';
+ $('.hint').textContent='Drag to explore · Scroll or use two fingers to zoom';
+ $('.toolbar').setAttribute('aria-label','Scene controls');
+ $('[data-view=iso]').textContent='Isometric';$('[data-view=front]').textContent='Front';$('[data-view=top]').textContent='Top';
+ $('#rotate').textContent='Rotate';$('#reset').textContent='Reset';
+ $('.exposure').firstChild.textContent='Light ';$('#light').setAttribute('aria-label','Lighting intensity');
+}
+</script>
 <script src="./viewer.js" defer></script></body></html>

@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { PILLARS } from '../data/site'
+import { useT, useLocale, essaysPath, localizePath } from '../lib/i18n'
 
 const WORDMARK_SRC = '/images/wordmark.png'
 const WORDMARK_ASPECT = 182 / 48
@@ -105,15 +105,22 @@ export function Avatar({ initials, size = 44, style = {} }: { initials: string; 
   )
 }
 
-const NAV = [
-  { href: '/ensaios', label: 'ensaios' },
-  { href: '/projetos', label: 'projetos' },
-  { href: '/sobre', label: 'sobre' },
-  { href: '/newsletter', label: 'newsletter' },
-]
-
 export function SiteHeader({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const router = useRouter()
+  const t = useT()
+  const locale = useLocale()
+  const otherLocale = locale === 'en' ? 'pt-BR' : 'en'
+  const NAV = [
+    { href: essaysPath(locale), label: t.nav.essays },
+    { href: '/projetos', label: t.nav.projects },
+    { href: '/sobre', label: t.nav.about },
+    { href: '/newsletter', label: t.nav.newsletter },
+  ]
+  const ctrl: React.CSSProperties = {
+    fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--text-secondary)',
+    background: 'transparent', border: 'var(--hairline)', borderRadius: 'var(--radius-sm)',
+    padding: '5px 9px', cursor: 'pointer', lineHeight: 1, textDecoration: 'none',
+  }
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 50,
@@ -125,7 +132,8 @@ export function SiteHeader({ theme, toggleTheme }: { theme: string; toggleTheme:
         <span style={{ flex: 1 }} />
         <nav style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-l)', flexWrap: 'wrap' }}>
           {NAV.map((n) => {
-            const active = router.pathname === n.href || router.pathname.startsWith(n.href + '/')
+            const path = router.asPath.split(/[?#]/)[0]
+            const active = path === n.href || path.startsWith(n.href + '/')
             return (
               <Link key={n.href} href={n.href} className='kit-navlink'
                 style={{
@@ -135,12 +143,11 @@ export function SiteHeader({ theme, toggleTheme }: { theme: string; toggleTheme:
                 }}>{n.label}</Link>
             )
           })}
-          <button onClick={toggleTheme} aria-label='Alternar tema'
-            style={{
-              fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--text-secondary)',
-              background: 'transparent', border: 'var(--hairline)', borderRadius: 'var(--radius-sm)',
-              padding: '5px 9px', cursor: 'pointer', lineHeight: 1,
-            }}>{theme === 'dark' ? '[claro]' : '[escuro]'}</button>
+          <Link href={localizePath(router.asPath, otherLocale)} locale={otherLocale} className='kit-navlink'
+            aria-label={t.lang.switchLabel} title={t.lang.switchLabel} style={ctrl}>[{t.lang.switchTo}]</Link>
+          <button onClick={toggleTheme} aria-label={t.theme.toggle} style={ctrl}>
+            {theme === 'dark' ? t.theme.light : t.theme.dark}
+          </button>
         </nav>
       </div>
     </header>
@@ -148,13 +155,15 @@ export function SiteHeader({ theme, toggleTheme }: { theme: string; toggleTheme:
 }
 
 export function SiteFooter() {
+  const t = useT()
+  const PILLARS = t.pillars
   return (
     <footer style={{ borderTop: 'var(--hairline)', marginTop: 'var(--space-4xl)' }}>
       <div style={{ maxWidth: 'var(--container-wide)', margin: '0 auto', padding: 'var(--space-2xl) var(--gutter)', display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2xl)', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div style={{ maxWidth: '32ch' }}>
           <Logo size={26} />
           <p style={{ fontSize: 15, color: 'var(--text-secondary)', marginTop: 14, lineHeight: 1.5 }}>
-            Bastidores reais de quem constrói. Conteúdo sobre criação, produto, tecnologia e marca pessoal.
+            {t.footer.tagline}
           </p>
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
@@ -166,7 +175,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div style={{ maxWidth: 'var(--container-wide)', margin: '0 auto', padding: 'var(--space-m) var(--gutter) var(--space-2xl)', fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.04em' }}>
-        [BTS] tulio · © 2026 · feito com respiro
+        [BTS] tulio · © 2026 · {t.footer.colophon}
       </div>
     </footer>
   )

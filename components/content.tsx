@@ -3,10 +3,12 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { Tag, Button } from './kit'
 import type { IssueMeta } from '../lib/ensaios'
+import { useT, useLocale, essaysPath } from '../lib/i18n'
 
 export function IssueRow({ issue }: { issue: IssueMeta }) {
+  const locale = useLocale()
   return (
-    <Link href={`/ensaios/${issue.slug}`}
+    <Link href={essaysPath(locale, issue.slug)}
       className='kit-issue'
       style={{
         display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 'var(--space-l)',
@@ -35,7 +37,11 @@ export function IssueRow({ issue }: { issue: IssueMeta }) {
   )
 }
 
-export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', note = 'Um envio por semana. Sem spam, sem hype.', buttonLabel = 'Assinar' }: { title?: string; note?: string; buttonLabel?: string }) {
+export function NewsletterForm({ title, note, buttonLabel }: { title?: string; note?: string; buttonLabel?: string }) {
+  const t = useT().form
+  title = title ?? t.title
+  note = note ?? t.note
+  buttonLabel = buttonLabel ?? t.button
   const [email, setEmail] = useState('')
   const [website, setWebsite] = useState('') // honeypot — leave empty
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
@@ -66,7 +72,7 @@ export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', 
         {title}
       </h3>
       {status === 'done' ? (
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--text-secondary)' }}>→ Pronto. Confira sua caixa de entrada.</p>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--text-secondary)' }}>{t.done}</p>
       ) : (
         <form onSubmit={submit}
           style={{ display: 'flex', gap: 'var(--space-m)', alignItems: 'flex-end', maxWidth: 460, flexWrap: 'wrap' }}>
@@ -84,16 +90,16 @@ export function NewsletterForm({ title = 'Receba os bastidores no seu e-mail.', 
             />
           </div>
           <div style={{ flex: '1 1 240px' }}>
-            <input type='email' required placeholder='seu@email.com' value={email} aria-label='E-mail'
+            <input type='email' required placeholder={t.placeholder} value={email} aria-label={t.emailLabel}
               onChange={(e) => setEmail(e.target.value)}
               style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--text-primary)', background: 'transparent', width: '100%', padding: '10px 2px', border: 'none', borderBottom: '1px solid var(--border-hairline)', outline: 'none' }} />
           </div>
-          <Button type='submit'>{status === 'sending' ? 'Enviando…' : buttonLabel}</Button>
+          <Button type='submit'>{status === 'sending' ? t.sending : buttonLabel}</Button>
         </form>
       )}
       {status === 'error' && (
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.04em', marginTop: 12 }}>
-          Algo deu errado. Tente de novo em instantes.
+          {t.error}
         </p>
       )}
       {(status === 'idle' || status === 'sending') && <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--text-secondary)', letterSpacing: '0.04em', marginTop: 12 }}>{note}</p>}
