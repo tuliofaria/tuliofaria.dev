@@ -5,25 +5,27 @@ import type { GetStaticProps } from 'next'
 import { getAllIssueMetas, type IssueMeta } from '../../lib/ensaios'
 import { Overline } from '../../components/kit'
 import { IssueRow } from '../../components/content'
+import { useT } from '../../lib/i18n'
 
 const IssueList = ({ issues }: { issues: IssueMeta[] }) => {
-  const allTags = ['todos', ...Array.from(new Set(issues.flatMap((i) => i.tags)))]
-  const [filter, setFilter] = useState('todos')
-  const shown = filter === 'todos' ? issues : issues.filter((i) => i.tags.includes(filter))
+  const t = useT().essays
+  const allTags = [t.all, ...Array.from(new Set(issues.flatMap((i) => i.tags)))]
+  const [filter, setFilter] = useState(t.all)
+  const shown = filter === t.all ? issues : issues.filter((i) => i.tags.includes(filter))
   return (
     <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'clamp(40px,7vw,88px) var(--gutter) 0' }}>
-      <Head><title>Ensaios — [BTS] tulio</title></Head>
-      <Overline>Ensaios · {issues.length} {issues.length === 1 ? 'edição' : 'edições'}</Overline>
+      <Head><title>{`${t.pageTitle} — [BTS] tulio`}</title></Head>
+      <Overline>{t.overline(issues.length)}</Overline>
       <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2.25rem,5vw,3.5rem)', letterSpacing: '-0.03em', lineHeight: 1.02, margin: '12px 0 0', maxWidth: '18ch' }}>
-        Tudo que aprendi construindo, por escrito.
+        {t.title}
       </h1>
 
       {/* Filter row */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, margin: 'var(--space-xl) 0 var(--space-s)' }}>
-        {allTags.map((t) => {
-          const active = t === filter
+        {allTags.map((tag) => {
+          const active = tag === filter
           return (
-            <button key={t} onClick={() => setFilter(t)}
+            <button key={tag} onClick={() => setFilter(tag)}
               style={{
                 fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase',
                 padding: '7px 12px', borderRadius: 'var(--radius-sm)', cursor: 'pointer', whiteSpace: 'nowrap',
@@ -31,7 +33,7 @@ const IssueList = ({ issues }: { issues: IssueMeta[] }) => {
                 background: active ? 'var(--text-primary)' : 'transparent',
                 color: active ? 'var(--text-on-inverse)' : 'var(--text-secondary)',
                 transition: 'all var(--dur-fast) var(--ease-standard)',
-              }}>{t}</button>
+              }}>{tag}</button>
           )
         })}
       </div>
@@ -43,8 +45,8 @@ const IssueList = ({ issues }: { issues: IssueMeta[] }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  return { props: { issues: getAllIssueMetas() } }
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return { props: { issues: getAllIssueMetas(locale) } }
 }
 
 export default IssueList

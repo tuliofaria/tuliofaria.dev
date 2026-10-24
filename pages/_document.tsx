@@ -5,7 +5,7 @@ const themeInit = `(function(){try{var t=JSON.parse(localStorage.getItem('bts-tu
 
 export default function MyDocument() {
   return (
-    <Html lang='pt-br' data-theme='light'>
+    <Html data-theme='light'>
       <Head>
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
