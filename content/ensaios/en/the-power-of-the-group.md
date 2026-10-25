@@ -1,4 +1,5 @@
 ---
+ptSlug: o-poder-do-grupo
 n: 6
 title: "The power of the group (and why accountability changes execution)"
 excerpt: "After an almost perfect week, Renato asked to leave the freelance work and double down on his own SaaS. What stuck with me wasn't him leaving. It was the proof that we execute more when we're close to people who are already executing."

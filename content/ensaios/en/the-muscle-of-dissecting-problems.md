@@ -1,4 +1,5 @@
 ---
+ptSlug: o-musculo-de-dissecar-problemas
 n: 10
 title: "The muscle of dissecting problems (and what's left when AI does the typing)"
 excerpt: "I measured a 400m² lot on Google Maps and opened a Claude session just to see if it could work as a parking lot. The value wasn't the business plan. It was training the muscle we use most as programmers, the one AI doesn't replace."

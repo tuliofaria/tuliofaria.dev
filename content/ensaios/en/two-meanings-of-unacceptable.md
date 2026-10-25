@@ -1,4 +1,5 @@
 ---
+ptSlug: dois-sentidos-de-inaceitavel
 n: 11
 title: "The two meanings of unacceptable"
 excerpt: "Lucas Montano said it's unacceptable for a professional dev not to pay for one or two AI subscriptions. The internet caught fire and mixed up two conversations. One is about salary. The other is about falling behind on purpose."

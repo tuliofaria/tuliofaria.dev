@@ -1,4 +1,5 @@
 ---
+ptSlug: o-preco-do-dominio-e-a-renovacao
 n: 12
 title: "The price of a domain is the renewal"
 excerpt: "You built the app with AI and got stuck on the name. GoDaddy sells cheap in the first year and charges a lot after that. I research ideas in one place and buy in another, and the name has to survive a phone call."

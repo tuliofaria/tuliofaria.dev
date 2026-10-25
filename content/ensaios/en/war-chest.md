@@ -1,4 +1,5 @@
 ---
+ptSlug: verba-de-guerra
 n: 2
 title: "A war chest: how to stop getting stuck on cost and learn a new technology"
 excerpt: "I spent two months going nowhere trying to learn AI content generation for free. What got me moving was setting three resources: money, time and consistency."

@@ -18,13 +18,14 @@ Next.js (Pages Router) + TypeScript. Essays are Markdown files with frontmatter,
 
 When you create or publish a new essay, **always create the English version in the same change**. Never publish a Portuguese essay without its English translation.
 
-1. Portuguese: `content/ensaios/<slug>.md`
-2. English: `content/ensaios/en/<slug>.md`, with the **same filename/slug** as the Portuguese file. The slug stays in Portuguese so the language switcher maps 1:1 between the two versions.
+1. Portuguese: `content/ensaios/<pt-slug>.md`
+2. English: `content/ensaios/en/<en-slug>.md`. The EN slug is a **short kebab-case English slug derived from the English title** (lowercase, ASCII, no accents, no stop-word padding, usually 3 to 6 words, e.g. `war-chest`). It is **not** the Portuguese slug. The EN file links back to the PT file with `ptSlug` (below).
 
 When you edit an existing essay, apply the same edit to the other language.
 
 ### Frontmatter for the English file
 
+- `ptSlug`: **required**. Filename (without `.md`) of the Portuguese original, e.g. `ptSlug: verba-de-guerra`. The build fails if it is missing, if no Portuguese file has that slug, or if two EN files share a `ptSlug`.
 - `n`: same number as the Portuguese file.
 - `title`, `excerpt`: translated.
 - `tags`: translated, lowercase (`negócios` → `business`, `tecnologia` → `technology`, `ia` → `ai`, `aprendizado` → `learning`). Reuse tags already used in `content/ensaios/en/` before inventing new ones.
@@ -40,6 +41,13 @@ When you edit an existing essay, apply the same edit to the other language.
 - Links stay the same. If a link points to Portuguese-only content (e.g. a YouTube video), add "(in Portuguese)" after it.
 - Avoid AI-writing tells: no em-dash overuse, no inflated words ("delve", "tapestry", "testament", "crucial"), no rule-of-three padding, no "it's not X, it's Y" flourishes beyond what the original has.
 
+## URLs, language switcher, canonical and hreflang
+
+- The language switcher on an essay page goes to the other language's slug (EN -> PT via `ptSlug`, PT -> EN by reverse lookup), using `getAltSlug` in `lib/ensaios.ts`. Other pages keep the same path in the other locale.
+- `pages/ensaios/[slug].tsx` emits a **self-referencing** `rel=canonical` (PT `/ensaios/<pt-slug>`, EN `/en/issues/<en-slug>`; never canonical PT to EN) plus `hreflang` `pt-BR`, `en` and `x-default` (= PT) with the correct slug of each language. `_app.tsx` emits the same set for every other page and skips it on essay routes. Build absolute URLs with `lib/site.ts` (`SITE_URL`, `absoluteUrl`, `issueUrl`).
+- `pages/sitemap.xml.tsx` builds `/sitemap.xml` from the content files (all essays in both languages, with alternates). `public/robots.txt` points to it. Nothing to update when you add an essay.
+- **Never rename a published slug without adding a 301 redirect `old -> new` in the same change.** For an EN slug, add the entry to `lib/slug-redirects.js` (`next.config.js` generates `/en/issues/<old>` and `/en/ensaios/<old>` redirects from it). For a PT slug, also add a redirect for `/ensaios/<old>` in `next.config.js` and update `ptSlug` in the EN file. New essays need no entry.
+
 ## Checking your work
 
-Run `npm run build`. It prerenders every essay in both locales and fails if a page breaks.
+Run `npm run build`. It prerenders every essay in both locales and fails if a page breaks or if a slug rule above is violated (missing or unknown `ptSlug`, duplicate slug, redirect target without an EN file).

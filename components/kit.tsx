@@ -105,11 +105,13 @@ export function Avatar({ initials, size = 44, style = {} }: { initials: string; 
   )
 }
 
-export function SiteHeader({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
+// On an essay page, `altSlug` is the slug of the same essay in the other language (null if untranslated).
+export function SiteHeader({ theme, toggleTheme, isEssay = false, altSlug = null }: { theme: string; toggleTheme: () => void; isEssay?: boolean; altSlug?: string | null }) {
   const router = useRouter()
   const t = useT()
   const locale = useLocale()
   const otherLocale = locale === 'en' ? 'pt-BR' : 'en'
+  const switchHref = isEssay ? essaysPath(otherLocale, altSlug ?? undefined) : localizePath(router.asPath, otherLocale)
   const NAV = [
     { href: essaysPath(locale), label: t.nav.essays },
     { href: '/projetos', label: t.nav.projects },
@@ -143,7 +145,7 @@ export function SiteHeader({ theme, toggleTheme }: { theme: string; toggleTheme:
                 }}>{n.label}</Link>
             )
           })}
-          <Link href={localizePath(router.asPath, otherLocale)} locale={otherLocale} className='kit-navlink'
+          <Link href={switchHref} locale={otherLocale} className='kit-navlink'
             aria-label={t.lang.switchLabel} title={t.lang.switchLabel} style={ctrl}>[{t.lang.switchTo}]</Link>
           <button onClick={toggleTheme} aria-label={t.theme.toggle} style={ctrl}>
             {theme === 'dark' ? t.theme.light : t.theme.dark}

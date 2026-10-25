@@ -1,4 +1,5 @@
 ---
+ptSlug: quando-o-codigo-deixa-de-ser-o-gargalo
 n: 14
 title: "When code stops being the bottleneck"
 excerpt: "In March I opened about 40 PRs across my side projects. In October, in about 15 days of work, it was 197. Code stopped holding me back, and the CI/CD bill arrived."

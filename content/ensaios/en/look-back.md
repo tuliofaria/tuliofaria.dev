@@ -1,4 +1,5 @@
 ---
+ptSlug: olhe-pra-tras
 n: 3
 title: "Look back: the problem isn't productivity"
 excerpt: "A thousand tabs, several terminals running Claude and Codex, and that feeling of being exhausted without getting anything done. What got me unstuck was to stop looking only forward."
