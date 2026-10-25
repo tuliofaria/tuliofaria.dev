@@ -1,4 +1,5 @@
 ---
+ptSlug: comecar-a-vender-seu-saas
 n: 7
 title: "Starting to sell your SaaS (and why the problem is almost never just sales)"
 excerpt: "We think the SaaS doesn't sell. Often it never talked to the customer, packages the offer badly or speaks to people who don't even know they have the problem yet. Selling starts before the pitch."

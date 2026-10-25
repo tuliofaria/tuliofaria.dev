@@ -4,10 +4,11 @@ import Head from 'next/head'
 import Link from 'next/link'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import ReactMarkdown, { type Components } from 'react-markdown'
-import { getAllIssues, type Issue, type IssueMeta } from '../../lib/ensaios'
+import { getAllIssues, getAltSlug, type Issue, type IssueMeta } from '../../lib/ensaios'
 import { Overline, Tag } from '../../components/kit'
 import { NewsletterForm, PullQuote } from '../../components/content'
 import { useT, useLocale, essaysPath, LOCALES } from '../../lib/i18n'
+import { issueUrl } from '../../lib/site'
 
 // Flattens a hast node to its plain text content.
 function hastText(node: any): string {
@@ -48,14 +49,32 @@ interface ReadIssueProps {
   issue: Issue
   prev: IssueMeta | null
   next: IssueMeta | null
+  // Slug of the same essay in the other language (null if untranslated).
+  altSlug: string | null
 }
 
-const ReadIssue = ({ issue, prev, next }: ReadIssueProps) => {
+const ReadIssue = ({ issue, prev, next, altSlug }: ReadIssueProps) => {
   const t = useT().essays
   const locale = useLocale()
+  // Slug per language, so canonical and hreflang point at the right URL in each one.
+  const ptSlug = locale === 'en' ? altSlug : issue.slug
+  const enSlug = locale === 'en' ? issue.slug : altSlug
+  const selfUrl = issueUrl(locale, issue.slug)
+  const title = `${issue.title} — [BTS] tulio`
   return (
     <article style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'clamp(32px,5vw,64px) var(--gutter) 0' }}>
-      <Head><title>{`${issue.title} — [BTS] tulio`}</title></Head>
+      <Head>
+        <title>{title}</title>
+        <meta name='description' content={issue.excerpt} />
+        <link rel='canonical' href={selfUrl} />
+        {ptSlug && <link rel='alternate' hrefLang='pt-BR' href={issueUrl('pt-BR', ptSlug)} />}
+        {enSlug && <link rel='alternate' hrefLang='en' href={issueUrl('en', enSlug)} />}
+        {ptSlug && <link rel='alternate' hrefLang='x-default' href={issueUrl('pt-BR', ptSlug)} />}
+        <meta property='og:type' content='article' />
+        <meta property='og:title' content={issue.title} />
+        <meta property='og:description' content={issue.excerpt} />
+        <meta property='og:url' content={selfUrl} />
+      </Head>
       <Link href={essaysPath(locale)} className='kit-navlink'
         style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--text-secondary)', letterSpacing: '0.04em' }}>
         {t.back}
@@ -132,6 +151,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
       issue: issues[idx],
       prev: issues[idx + 1] ? strip(issues[idx + 1]) : null,
       next: issues[idx - 1] ? strip(issues[idx - 1]) : null,
+      altSlug: getAltSlug(locale, params?.slug as string),
     },
   }
 }

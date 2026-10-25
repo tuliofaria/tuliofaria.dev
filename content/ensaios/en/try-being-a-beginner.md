@@ -1,4 +1,5 @@
 ---
+ptSlug: experimente-ser-novato
 n: 9
 title: "Try being a beginner: let the model lead"
 excerpt: "I sent ChatGPT a photo of DevPleno's old studio and kept asking only 'what's the next step?'. It built the scene in Blender, refined the character in Higgsfield and exported Three.js. The lesson wasn't Blender."

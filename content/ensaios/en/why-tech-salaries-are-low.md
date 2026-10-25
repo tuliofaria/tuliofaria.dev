@@ -1,4 +1,5 @@
 ---
+ptSlug: por-que-o-salario-em-ti-e-baixo
 n: 8
 title: "Why tech salaries are low (and why the problem is almost never the field)"
 excerpt: "We complain that tech pays badly. Before blaming the market, it's worth asking how much we generate for the company and whether our résumé backs up the number we want. The field has a wide range; the average only describes the middle."

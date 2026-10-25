@@ -1,4 +1,5 @@
 ---
+ptSlug: por-que-todo-dev-usa-mac
 n: 5
 title: "Why every dev uses a Mac (and why it matters less than it seems)"
 excerpt: "Goldman asked why most people develop on a Mac. The answer mixes fashion, the App Store and a Unix shell. The useful point is a different one: a machine is only worth replacing when it's slowing you down."

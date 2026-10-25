@@ -1,4 +1,5 @@
 ---
+ptSlug: varios-negocios-quase-sozinho
 n: 1
 title: I disappeared for months. This is what I was building
 excerpt: How I'm creating and running several businesses almost on my own, with AI, automation and partnerships with specialists.

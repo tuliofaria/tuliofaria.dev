@@ -1,4 +1,5 @@
 ---
+ptSlug: objetivo-sim-ou-nao
 n: 4
 title: "If the answer isn't yes or no, you don't have a goal"
 excerpt: "I gave Claude Code a goal and walked away. 53 minutes later it had hit 100 on PageSpeed across four pages. The interesting part wasn't the result. It was what the harness forced me to define first."

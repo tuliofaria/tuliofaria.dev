@@ -1,4 +1,5 @@
 ---
+ptSlug: o-limite-e-o-quanto-voce-pergunta
 n: 13
 title: "The limit is how much you ask"
 excerpt: "I set out to reverse engineer an Android app and ended up with Claude Code making my phone faster. The tool was already there. What was missing was the question."

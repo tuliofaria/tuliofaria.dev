@@ -12,7 +12,6 @@ export default function Studio3D() {
       <Head>
         <title>{`${t.pageTitle} — [BTS] tulio`}</title>
         <meta name='description' content={t.description} />
-        <link rel='canonical' href={`https://tuliofaria.dev${locale === 'en' ? '/en' : ''}/projetos/estudio-3d/`} />
         <meta property='og:title' content={t.ogTitle} />
         <meta property='og:description' content={t.ogDescription} />
         <meta property='og:image' content='https://tuliofaria.dev/estudio-3d/preview.png' />
