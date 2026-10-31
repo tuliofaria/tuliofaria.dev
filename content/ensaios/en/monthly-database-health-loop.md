@@ -9,6 +9,7 @@ tags:
   - automation
 date: Oct 30, 2026
 read: 6 min
+cover: /images/ensaios/loop-saude-banco-capa-en.png
 ---
 
 A database is one of those things nobody looks at until something breaks. A query gets slow, a table grows, an index nobody uses keeps taking up space. Nobody forgot on purpose. There's just no moment in the month when someone stops and looks.
@@ -33,7 +34,7 @@ The issue is the agent's input. Along with the workflow I left a playbook in the
 
 And there's `history.md`. Every suggestion the agent makes gets a line there, accepted or rejected. It sounds like bureaucracy, but it's what makes the loop work from one month to the next. Without a history, the same suggestion I already turned down comes back every month, and I'm once again the person repeating the same answer. Rejections go into the history too, with the reason.
 
-Today the path is this: the Action opens the issue, the agent reads it, proposes and opens the PRs, CI and the reviewers go over them, and I review and merge. I triggered the first round by hand, to watch it. The next ones will run on a schedule, in T3 Code or as a Claude Code scheduled task, formerly called routines, which also accepts an API trigger.
+Today the path is this: the Action opens the issue, the agent reads it, proposes and opens the PRs, CI and the reviewers go over them, and I review and merge. I triggered the first round by hand, to watch it. For the next ones, I'm still deciding how to schedule them. The options I'm considering are scheduling in T3 Code or a Claude Code scheduled task, formerly called routines, which also accepts an API trigger.
 
 ## The first audit
 
