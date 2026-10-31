@@ -1,6 +1,6 @@
 ---
 n: 15
-title: "Um loop mensal pra saúde do banco"
+title: "Um loop mensal para saúde do banco"
 excerpt: "Todo fim de mês um GitHub Action olha o banco de produção e abre uma issue. Um agente lê, propõe e abre os PRs. Eu só entro no merge. Na primeira rodada, uma tabela de 2,3 GB caiu no colo."
 tags:
   - banco-de-dados
@@ -8,6 +8,7 @@ tags:
   - automacao
 date: 30 out 2026
 read: 6 min
+cover: /images/ensaios/loop-saude-banco-capa-en.png
 ---
 
 Banco de dados é uma daquelas coisas que ninguém olha até dar problema. A query fica lenta, a tabela cresce, um índice que ninguém usa continua lá ocupando espaço. Ninguém esqueceu de propósito. Só não tem um momento no mês em que alguém para e olha.
@@ -28,11 +29,11 @@ Se uma seção falha, ela aparece como indisponível e as outras saem normalment
 
 ## Quem pensa é o agente
 
-A issue é a entrada pro agente. Junto com o workflow eu deixei um playbook no repositório: como ler os dados, como dar um ID estável pra cada sugestão, quando um índice novo vira migration e por que limpeza de dados nunca vira PR sem decisão minha.
+A issue é a entrada para o agente. Junto com o workflow eu deixei um playbook no repositório: como ler os dados, como dar um ID estável para cada sugestão, quando um índice novo vira migration e por que limpeza de dados nunca vira PR sem decisão minha.
 
-E tem o `history.md`. Toda sugestão que o agente faz ganha uma linha ali, aceita ou recusada. Isso parece burocracia, mas é o que faz o loop funcionar de um mês pro outro. Sem histórico, a mesma sugestão que eu já recusei volta todo mês, e eu viro de novo a pessoa que fica repetindo a mesma resposta. Recusa também vai pro histórico, com o motivo.
+E tem o `history.md`. Toda sugestão que o agente faz ganha uma linha ali, aceita ou recusada. Isso parece burocracia, mas é o que faz o loop funcionar de um mês para o outro. Sem histórico, a mesma sugestão que eu já recusei volta todo mês, e eu viro de novo a pessoa que fica repetindo a mesma resposta. Recusa também vai para o histórico, com o motivo.
 
-Hoje o caminho é esse: o Action abre a issue, o agente lê, propõe e abre os PRs, o CI e os reviewers passam por cima, e eu reviso e faço o merge. A primeira rodada eu disparei na mão, pra acompanhar. As próximas vão por agendamento, no T3 Code ou numa tarefa agendada do Claude Code, que antes se chamava routines e também aceita disparo por API.
+Hoje o caminho é esse: o Action abre a issue, o agente lê, propõe e abre os PRs, o CI e os reviewers passam por cima, e eu reviso e faço o merge. A primeira rodada eu disparei na mão, para acompanhar. Para as próximas, ainda estou avaliando como agendar. As opções que estou considerando são o agendamento do T3 Code ou uma tarefa agendada do Claude Code, que antes se chamava routines e também aceita disparo por API.
 
 ## A primeira auditoria
 
@@ -42,9 +43,9 @@ E notificação antiga não tem valor nenhum. Os apps mostram as 20 mais recente
 
 O agente propôs, eu decidi: guardar seis meses. Aí vieram dois PRs, porque o playbook manda assim.
 
-O primeiro é só a migration: um índice em `createdAt` na tabela de notificações. O único índice que existia era por usuário, e ele não serve pra buscar tudo que é mais antigo que uma data. Sem esse índice, cada limpeza ia varrer a tabela inteira. Ele vai sozinho, antes de qualquer código que dependa dele.
+O primeiro é só a migration: um índice em `createdAt` na tabela de notificações. O único índice que existia era por usuário, e ele não serve para buscar tudo que é mais antigo que uma data. Sem esse índice, cada limpeza ia varrer a tabela inteira. Ele vai sozinho, antes de qualquer código que dependa dele.
 
-O segundo é um cron diário que apaga as notificações com mais de seis meses, em lotes de mil linhas, com um orçamento de dez minutos por execução. O que sobrar fica pra noite seguinte. Nas primeiras noites ele vai trabalhar no acúmulo, e depois disso cada execução deve pegar pouca coisa.
+O segundo é um cron diário que apaga as notificações com mais de seis meses, em lotes de mil linhas, com um orçamento de dez minutos por execução. O que sobrar fica para noite seguinte. Nas primeiras noites ele vai trabalhar no acúmulo, e depois disso cada execução deve pegar pouca coisa.
 
 Depois da limpeza, a tabela ficou com [placeholder].
 
