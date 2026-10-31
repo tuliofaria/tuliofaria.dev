@@ -79,6 +79,9 @@ const ReadIssue = ({ issue, prev, next, altSlug }: ReadIssueProps) => {
         <meta property='og:title' content={issue.title} />
         <meta property='og:description' content={issue.excerpt} />
         <meta property='og:url' content={selfUrl} />
+        {issue.cover && <meta property='og:image' content={`https://tuliofaria.dev${issue.cover}`} />}
+        {issue.cover && <meta name='twitter:card' content='summary_large_image' />}
+        {issue.cover && <meta name='twitter:image' content={`https://tuliofaria.dev${issue.cover}`} />}
       </Head>
       <Link href={essaysPath(locale)} className='kit-navlink'
         style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--text-secondary)', letterSpacing: '0.04em' }}>
