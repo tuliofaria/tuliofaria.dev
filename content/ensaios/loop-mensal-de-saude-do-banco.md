@@ -1,6 +1,6 @@
 ---
 n: 15
-title: "Um loop mensal para saúde do banco"
+title: "Um loop mensal para a saúde do banco"
 excerpt: "Todo fim de mês um GitHub Action olha o banco de produção e abre uma issue. Um agente lê, propõe e abre os PRs. Eu só entro no merge. Na primeira rodada, uma tabela de 2,3 GB caiu no colo."
 tags:
   - banco-de-dados
