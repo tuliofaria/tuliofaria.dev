@@ -6,7 +6,7 @@ tags:
   - carreira
   - salario
   - ti
-date: 8 set 2026
+date: 1 out 2026
 read: 8 min
 ---
 
