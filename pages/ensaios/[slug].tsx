@@ -32,6 +32,11 @@ const markdownComponents: Components = {
         style={{ color: 'inherit', textDecoration: 'underline', textDecorationThickness: 1, textUnderlineOffset: '0.18em' }}>{children}</a>
     )
   },
+  // Essay images: fit the text column instead of overflowing it.
+  img: ({ src, alt }) => (
+    <img src={typeof src === 'string' ? src : undefined} alt={alt || ''} loading='lazy'
+      style={{ display: 'block', width: '100%', height: 'auto', margin: '0 0 var(--space-l)', borderRadius: 8 }} />
+  ),
   blockquote: ({ node }) => {
     const paragraphs = ((node as any)?.children || [])
       .filter((c: any) => c.tagName === 'p')
