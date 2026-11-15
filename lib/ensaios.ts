@@ -25,6 +25,8 @@ export interface IssueMeta {
   read: string
   // English files only: slug of the Portuguese original (frontmatter `ptSlug`).
   ptSlug?: string
+  // Optional site-relative image path (frontmatter `cover`), used as og:image / twitter:image.
+  cover?: string
 }
 
 export interface Issue extends IssueMeta {
@@ -54,6 +56,7 @@ function readIssues(locale?: string): Issue[] {
         tags: (data.tags || []) as string[],
         date: data.date as string,
         read: data.read as string,
+        ...(data.cover ? { cover: String(data.cover) } : {}),
         content: content.trim(),
       }
     })

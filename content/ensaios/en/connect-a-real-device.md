@@ -9,6 +9,7 @@ tags:
   - tools
 date: Nov 15, 2026
 read: 6 min
+cover: /images/ensaios/aparelho-real-capa.png
 ---
 
 I connected a real Galaxy A14, running Android 14, and asked the agent to explore the mobile app of one of my SaaS products.

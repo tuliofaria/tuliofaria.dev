@@ -8,6 +8,7 @@ tags:
   - ferramentas
 date: 15 nov 2026
 read: 6 min
+cover: /images/ensaios/aparelho-real-capa.png
 ---
 
 Conectei um Galaxy A14 de verdade, com Android 14, e pedi para o agente explorar o app mobile de um dos meus SaaS.
